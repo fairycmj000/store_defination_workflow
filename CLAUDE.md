@@ -35,7 +35,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `CLAUDE.md` | 工作区指引 | 含本节检索地图，指向 knowledge-space 权威指南与关键命令 |
 | `个人行动指南.md` | 个人产出物·非公共 | 行动清单/路线图（门店定义 10 项 + 完美门店） |
 | `门店定义知识库探究-避坑指南.md` | 个人产出物·非公共 | 探究踩坑记录 KB-001/002（append-only） |
-| `fairycmj000-github-repo-access-2026-10-16.md` | 过程输出 | GitHub 仓访问权限快照（生成物） |
 | `knowledge-space/` | 独立仓库 | 公共知识库权威源（`inkstone-lab/knowledge-space`） |
 | `代码仓/` | 独立仓库 ×39 | 后端代码仓（各自独立 .git，取证源） |
 | `数据资产/` | 数据资产 | 字段清单 + 原始抽取 |
@@ -145,6 +144,7 @@ flowchart LR
 |---|---|---|
 | 2026-10-16 | 初始化本仓库：新增 `README.md`、`.gitignore`；git init + 首次提交推送 origin/main | 确认 5 项个人产出物（`自动化工具\`、`业务知识全景\`、`业务中台架构\`、`个人行动指南.md`、`避坑指南.md`）；排除 `knowledge-space/`、`代码仓/`、`.claude/` |
 | 2026-10-16 | 检索地图由独立 `检索地图.md` 移入本 `CLAUDE.md`「检索地图」节 | 关系/入库映射就地维护 |
+| 2026-10-16 | `fairycmj000-github-repo-access-2026-10-16.md` 移出仓库（加 `.gitignore`，本地保留） | 该文件为个人生成快照，不入库 |
 
 ## 大图架构（跨多份文件才能拼出来）
 

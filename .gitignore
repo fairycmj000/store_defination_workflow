@@ -6,3 +6,6 @@ knowledge-space/
 
 # Claude Code 本地配置
 .claude/
+
+# GitHub 仓访问权限快照（个人生成物，不入库）
+fairycmj000-github-repo-access-*.md
