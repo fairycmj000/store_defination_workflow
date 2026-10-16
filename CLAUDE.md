@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 这个目录是什么
 
-`D:\CMJWORK\业务知识库` 本身**不是** git 仓库，而是一个工作区外壳。真正的仓库是子目录 **`knowledge-space/`**（远端 `inkstone-lab/knowledge-space`，分支 `main`）——一个 **Markdown-first** 的组织知识库，同时服务人和 AI（RAG / Agent / Context Engineering）。
+`D:\CMJWORK\业务知识库` 是一个**工作区外壳 + 个人工作流仓库**（git 远端 `git@github.com:fairycmj000/store_defination_workflow.git`，分支 main）。里面包含：
 
-外壳下另外两个目录**不属于**知识库本体，是仓库外的在途/输出材料：
+- **`knowledge-space/`**（独立仓库 `inkstone-lab/knowledge-space`，分支 main）—— **Markdown-first** 组织知识库，同时服务人和 AI（RAG / Agent / Context Engineering），是权威源。
+- **其余目录/文件** —— 门店定义个人工作流的在途/产出材料（个人产出物 · 数据资产 · 过程输出），收录在 `store_defination_workflow` 仓。
 
-- `业务中台架构/` — 业务中台资产层次梳理（HTML/MD）与一次「系统分层与业务中台统一梳理」的 summary / transcript。
-- `检索输出/` — 检索与知识库能力测试产出的报告（`*.md`）、Excel 抽取（`_xlsx_*.txt`）与测试截图。
+> **工作区文件关系与入库映射见 `检索地图.md`**（任何文件变更须同步维护）；仓库目录与资产性质总表见 `README.md`。
 
 进入 `knowledge-space/` 之前，权威指南按优先级读这几份（都是仓库内文件，**不要**在外壳层再抄一遍）：
 
