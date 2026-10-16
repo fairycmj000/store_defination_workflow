@@ -1,0 +1,8 @@
+# 知识库（独立仓库 inkstone-lab/knowledge-space，不纳入本 workflow 仓）
+knowledge-space/
+
+# 本地克隆的后端代码仓（各自独立仓库）
+代码仓/
+
+# Claude Code 本地配置
+.claude/

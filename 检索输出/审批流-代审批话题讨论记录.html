@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>审批流（代审批）话题讨论记录</title>
+<style>
+  :root {
+    --line: #d0d7de;
+    --dot: #6d5df0;
+    --user-bg: #e7f0ff;
+    --user-border: #b9d1ff;
+    --user-fg: #0b3d91;
+    --claude-bg: #ffffff;
+    --claude-border: #e2e6ea;
+    --text: #1f2328;
+    --muted: #667085;
+    --code-bg: #f6f8fa;
+    --table-border: #e5e8ec;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: var(--text);
+    background: #f4f6f9;
+    line-height: 1.65;
+    font-size: 15px;
+  }
+  .page-header {
+    background: linear-gradient(135deg, #4f46e5, #6d5df0);
+    color: #fff;
+    padding: 34px 24px 30px;
+    text-align: center;
+  }
+  .page-header h1 { margin: 0 0 8px; font-size: 24px; font-weight: 700; }
+  .page-header .sub { font-size: 13px; opacity: .9; }
+
+  .timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .turn {
+    position: relative;
+    margin-bottom: 6px;
+  }
+
+  .col {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    padding-left: 64px;
+  }
+  .user-col { justify-content: flex-start; margin-bottom: 20px; }
+  .claude-col { justify-content: flex-start; }
+  .col::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 14px;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--dot);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 0 2px var(--dot);
+  }
+
+  .bubble {
+    border-radius: 12px;
+    padding: 16px 20px;
+    max-width: 100%;
+    min-width: 0;
+    box-shadow: 0 1px 3px rgba(16,24,40,.06);
+    position: relative;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    overflow: hidden;
+  }
+  .user-bubble {
+    background: var(--user-bg);
+    border: 1px solid var(--user-border);
+    border-top-right-radius: 3px;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .claude-bubble {
+    background: var(--claude-bg);
+    border: 1px solid var(--claude-border);
+    border-top-left-radius: 3px;
+    width: 100%;
+  }
+
+  .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .user-bubble .label { color: var(--user-fg); }
+  .claude-bubble .label { color: var(--dot); }
+
+  .user-bubble p { margin: 0; color: #0b3d91; }
+  .user-bubble .usertext {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: inherit;
+    color: #0b3d91;
+    font-size: 14px;
+  }
+
+  /* content inside Claude bubbles */
+  .claude-bubble h3, .claude-bubble h4 { margin: 18px 0 8px; line-height: 1.4; }
+  .claude-bubble h3:first-child, .claude-bubble h4:first-child, .claude-bubble p:first-child { margin-top: 0; }
+  .claude-bubble h3 { font-size: 16px; }
+  .claude-bubble h4 { font-size: 15px; }
+  .claude-bubble p { margin: 8px 0; }
+  .claude-bubble ul, .claude-bubble ol { margin: 8px 0; padding-left: 22px; }
+  .claude-bubble li { margin: 4px 0; }
+  .claude-bubble strong { font-weight: 700; }
+  .claude-bubble a { color: #4f46e5; text-decoration: none; }
+  .claude-bubble a:hover { text-decoration: underline; }
+  .claude-bubble code {
+    background: var(--code-bg);
+    border: 1px solid #e5e8ec;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 13px;
+  }
+  .claude-bubble pre {
+    background: var(--code-bg);
+    border: 1px solid #e5e8ec;
+    border-radius: 8px;
+    padding: 12px 14px;
+    max-width: 100%;
+    overflow-x: auto;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .claude-bubble pre code { background: none; border: none; padding: 0; font-size: inherit; }
+  .claude-bubble blockquote {
+    margin: 10px 0;
+    padding: 8px 14px;
+    border-left: 3px solid #c7cdf5;
+    background: #f7f8ff;
+    border-radius: 0 6px 6px 0;
+    color: #383d47;
+  }
+  .claude-bubble blockquote p { margin: 4px 0; }
+  .claude-bubble table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin: 12px 0;
+    font-size: 13.5px;
+    display: block;
+    overflow-x: auto;
+  }
+  .claude-bubble th, .claude-bubble td {
+    border: 1px solid var(--table-border);
+    padding: 7px 10px;
+    text-align: left;
+    vertical-align: top;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .claude-bubble th { background: #f2f4f7; font-weight: 600; }
+  .claude-bubble hr { border: none; border-top: 1px dashed #d0d7de; margin: 18px 0; }
+
+  mark {
+    background: #ffefad;
+    padding: 0 3px;
+    border-radius: 3px;
+    color: inherit;
+  }
+  .gap-row td {
+    background: #fff4c2;
+  }
+
+  .footnote {
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+
+  @media (max-width: 820px) {
+    .timeline::before { left: 16px; }
+    .col::before { left: 16px; }
+    .col { padding-left: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>审批流（代审批）话题讨论记录</h1>
+  <div class="sub">代审批 · 跨业务团队审批 · segment 数据权限 · 双覆盖门店管理权</div>
+</div>
+
+<div class="timeline">
+
+  <!-- ============ Turn 1 ============ -->
+  <div class="turn" data-n="1">
+    <div class="col user-col">
+      <div class="bubble user-bubble">
+        <div class="label">用户</div>
+        <p>在知识库中查找关于代审批的功能实现相关内容。</p>
+      </div>
+    </div>
+    <div class="col claude-col">
+      <div class="bubble claude-bubble">
+        <div class="label">Claude</div>
+        <p>查完了。结论先说：<strong><mark>知识库里没有「代审批」的独立功能文档</mark></strong>，它只以两种形式存在——① 用户中心里的一个<strong>角色</strong> <code>proxy_approval_user</code>（代审批用户），② COT 一线作业服务的<strong>代码取证事实</strong>（指向真正实现该角色逻辑的代码）。实现细节如下：</p>
+        <h3>1. 角色定义（用户中心）</h3>
+        <p>在 <a href="clients/mars/systems/business-middle-platform/user-center/guides/access-control-model.md">access-control-model.md</a> 中，<code>proxy_approval_user</code>（代审批用户）是 <code>cotsfa</code> 应用下 41 个角色之一（第 88 行），并被绑定到<strong>公海门店后台管理系统</strong>客户端 <code>cotsfa-openseastore-mg</code> 的 18 个角色中（第 268 行）。它只有角色身份，无菜单/功能权限标记位描述。</p>
+        <h3>2. 功能实现（COT 一线作业 Service <code>re-yyx-cot-master</code>）</h3>
+        <p>真正的「代审批」逻辑在 COT 主服务的审批流里，证据来自代码取证 JSON <a href="clients/mars/systems/cot/field-ops/ontology/_cot_field_ops_code_facts.json">_cot_field_ops_code_facts.json</a>，共 5 处 <code>loginUser.getRoleCodes().contains("proxy_approval_user")</code> 判断，分布在 3 个文件：</p>
+        <table>
+          <thead><tr><th>代码文件（在 <code>a2_deliveries/mw-cot/re-yyx-cot-master/...</code> 下）</th><th>命中方法</th><th>作用</th></tr></thead>
+          <tbody>
+            <tr><td><code>biz/repository/primary/impl/StoreUpsertJdbcRepositoryImpl.java</code></td><td><code>findEnableUserTask()</code>、<code>findEnableUserPendingApprovalTask()</code>、<code>findOperatedProcess()</code>、<code>findBySponsor()</code></td><td><strong>任务查询</strong>（哪些待办/已办可见）</td></tr>
+            <tr><td><code>biz/service/impl/StoreWorkflowHandlerImpl.java</code></td><td><code>executeTask()</code>、<code>queryUserTask()</code>、<code>queryUserPendingApprovalTask()</code>、<code>forceApprove()</code>、<code>updateApproveInfo()</code></td><td><strong>审批执行</strong>（提交审批、查待办、强制审批）</td></tr>
+            <tr><td><code>biz/service/impl/CotGeneralApprovalServiceImpl.java</code></td><td><code>summaryYtd4Approve()</code></td><td><strong>审批汇总统计</strong></td></tr>
+          </tbody>
+        </table>
+        <p><strong>逻辑含义</strong>（从分支结构还原）：这三处都是同一套数据范围判断——</p>
+        <pre><code>if (当前用户有 proxy_approval_user 角色)
+    → 不按「自身组织 userOrgContentUid / 授权组织 grantUserOrgContentUid」过滤
+else
+    → 只看到自身组织 ∪ 授权组织范围内的审批任务</code></pre>
+        <p>即：<strong>拥有「代审批用户」角色的人，可以跨出自身/授权组织范围去查看并执行他人的审批任务</strong>（替原审批人审批），且审批量汇总（<code>summaryYtd4Approve</code>）也对这个角色放开范围。这正是「代审批」能力的实现点。</p>
+        <h3>3. 它所在的审批流整体</h3>
+        <p>代审批是门店审批流的一个权限旁路，审批流本体见 <a href="clients/mars/systems/cot/field-ops/cot-master-approval-and-validation.md">cot-master-approval-and-validation.md</a>：13 个 Flowable 流程定义、人员规则（<code>lineManager</code>/<code>kam</code>/<code>cityManager</code>/<code>channelManager</code>，由 <code>StoreWorkflowHandlerImpl</code> 取值）、<code>store_need_approve</code> 拉链表。该文档只讲审批节点与人员规则，<strong>未明确写代审批</strong>——代审批的授权逻辑目前只体现在代码里。</p>
+        <h3>一个需要注意的点</h3>
+        <p>取证 JSON 里的代码路径是 <code>/Users/bbottong/workspace/a2_deliveries/mw-cot/...</code>（取证机是 macOS）。本机 <code>D:\CMJWORK\代码仓库\</code> 下只有 <code>DTR知识库</code> 和 <code>SFA前端代码</code>，<strong>没有 <code>re-yyx-cot-master</code> 源码</strong>，所以我无法在本机直接核对源码细节，以上是基于知识库取证 JSON 的还原。</p>
+        <p>需要我进一步做哪一项？比如：① 把「代审批」这个能力补一篇正式的功能文档（走放置规则/主题权威）；② 去 <code>_cot_field_ops_code_facts.json</code> 里把 5 处分支的完整条件表达式展开，还原出精确的 SQL/过滤逻辑；③ 查审批流里还有没有其它类似的角色旁路（如超管白名单 <code>marsadmin</code>）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Turn 2 ============ -->
+  <div class="turn" data-n="2">
+    <div class="col user-col">
+      <div class="bubble user-bubble">
+        <div class="label">用户</div>
+        <p>②</p>
+      </div>
+    </div>
+    <div class="col claude-col">
+      <div class="bubble claude-bubble">
+        <div class="label">Claude</div>
+        <p>5 处判断还原出来了。它们落在 <strong>2 种逻辑模式</strong>里，我把每一处的条件序列（含行号）和重建的逻辑列清楚。</p>
+        <h3>模式 A：数据范围旁路（任务查询 / 审批执行）</h3>
+        <p>出现在 3 处，条件序列<strong>几乎完全相同</strong>，都是同一个套路：</p>
+        <p><strong>① <code>findEnableUserTask()</code> 第一个重载</strong>（<code>StoreUpsertJdbcRepositoryImpl.java</code>，方法起点 165）——查「我可执行的待办审批任务」</p>
+        <pre><code>170: !StringUtils.isEmpty(userCode)                          // 参数有值
+177: loginUser != null &amp;&amp; loginUser.getObject() != null        // 登录态有效
+179: roleCodes.contains("proxy_approval_user")                 // ← 代审批判断
+182: CollectionUtils.isEmpty(userOrgContentUid)                // 自身组织为空？
+185: !CollectionUtils.isEmpty(grantUserOrgContentUid)          // 授权组织非空？
+191: !CollectionUtils.isEmpty(userOrgContentUid)               // 自身组织非空？</code></pre>
+        <p><strong>② <code>findEnableUserTask()</code> 第二个重载</strong>（同一文件，方法起点 249）</p>
+        <pre><code>254: !StringUtils.isEmpty(userCode)
+261: loginUser != null &amp;&amp; loginUser.getObject() != null
+263: roleCodes.contains("proxy_approval_user")                 // ← 代审批判断
+266: CollectionUtils.isEmpty(userOrgContentUid)
+269: !CollectionUtils.isEmpty(grantUserOrgContentUid)
+275: !CollectionUtils.isEmpty(userOrgContentUid)</code></pre>
+        <p><strong>④ <code>executeTask()</code></strong>（<code>StoreWorkflowHandlerImpl.java</code>，方法起点 952）——执行审批动作</p>
+        <pre><code>962: loginUser != null &amp;&amp; loginUser.getObject() != null
+963: roleCodes.contains("proxy_approval_user")                 // ← 代审批判断
+966: CollectionUtils.isEmpty(userOrgContentUid)
+969: !CollectionUtils.isEmpty(grantUserOrgContentUid)
+975: !skipPermissions &amp;&amp; CollectionUtils.isEmpty(userOrgContentUid)   // 权限兜底
+984: task == null
+988: StringUtils.isEmpty(assignee)
+991: !skipPermissions
+993: !assignUidSet.contains(assigneeUid)                       // 执行人是否在指派人集合内</code></pre>
+        <p><strong>重建逻辑</strong>（这是 <code>StoreUpsertJdbcRepositoryImpl</code> 动态拼 SQL 的 WHERE 片段）：<code>proxy_approval_user</code> 判断紧跟登录态校验之后、组织范围条件之前，作用是——</p>
+        <pre><code>if (有 proxy_approval_user 角色) → 不追加「自身组织 ∪ 授权组织」过滤（看到/操作全量任务）
+else → 按 userOrgContentUid（自身）+ grantUserOrgContentUid（授权）拼组织范围过滤</code></pre>
+        <p>即在<strong>任务查询和任务执行</strong>两个入口，代审批人都能跨出自身组织范围，替原指派人操作任务。④里 <code>993: !assignUidSet.contains(assigneeUid)</code> 是执行人身份的二次校验（执行人须在 <code>assignee</code> 指派集合内）。</p>
+        <h3>模式 B：逐条记录级代审批授权（更细粒度）</h3>
+        <p>出现在 2 处，用的是<strong>专门的代审批变量</strong>（<code>proxyGrantUserOrgContentUid</code>、<code>approveUsersIncludeProxyUser</code>），不是通用组织过滤：</p>
+        <p><strong>③ <code>getCotApprovalGeneralEntityDtoById()</code></strong>（<code>CotGeneralApprovalServiceImpl.java</code>，方法起点 611）——查单个审批实体（解绑核验审批）</p>
+        <pre><code>613: Objects.nonNull(entityDo)
+615: APPROVAL_TYPE_STORE_UNBIND_VERIFIY.equals(entityDo.getApprovalType())   // 门店解绑核验类型
+620: userResp.getSuccessful() &amp;&amp; ...getContent()
+636: loginUser != null &amp;&amp; loginUser.getObject() != null
+637: roleCodes.contains("proxy_approval_user")                 // ← 代审批判断
+644: !CollectionUtils.isEmpty(proxyGrantUserOrgContentUid)
+645: proxyGrantUserOrgContentUid.contains(entityDo.getNextApproveContentUid())   // 下一审批节点∈代审批授权组织？
+654: !approveUsersIncludeProxyUser.stream().anyMatch(tmp -&gt; tmp.getCode().equals(...))  // 审批人链是否含代审批人</code></pre>
+        <p><strong>⑤ <code>updateApproveInfo()</code></strong>（<code>StoreWorkflowHandlerImpl.java</code>，方法起点 1449）——构建「下一审批人」映射展示</p>
+        <pre><code>1450: !CollectionUtils.isEmpty(storeUpsertDtos)
+1475: loginUser != null &amp;&amp; loginUser.getObject() != null
+1476: roleCodes.contains("proxy_approval_user")                 // ← 代审批判断
+1486: approveState == APPROVAL_STATE_WAITTING
+1490: approveUserMap.containsKey(orgContentUid)
+1497: userResp.getSuccessful() &amp;&amp; getContent()
+1507: !CollectionUtils.isEmpty(proxyGrantUserOrgContentUid)
+1508: proxyGrantUserOrgContentUid.contains(orgContentUid)       // 组织节点∈代审批授权组织？
+1517: !approveUsersIncludeProxyUser.stream().anyMatch(tmp -&gt; tmp.getCode().equals(...))
+1527: orgContentMap.containsKey(orgContentUid)</code></pre>
+        <p><strong>重建逻辑</strong>：这两处是「这个代审批人<strong>具体能代理哪一条审批记录</strong>」的判定，两个条件<strong>同时</strong>成立才放行——</p>
+        <pre><code>① proxyGrantUserOrgContentUid.contains(下一审批节点/当前组织节点)
+     → 该审批记录的组织节点必须落在代审批人的「授权组织」范围内
+② approveUsersIncludeProxyUser 中包含该代审批人
+     → 该记录的审批人链里必须明确挂着这个代审批人</code></pre>
+        <p>即：代审批不是「有角色就能替任何人批」，而是<strong>先看角色（模式 A 放你进全局待办），再看这条记录的组织节点是否在你被授权的组织内、且审批人链里是否点名了你（模式 B 决定你能批哪几条）</strong>。</p>
+        <h3>关键变量对照</h3>
+        <table>
+          <thead><tr><th>变量</th><th>含义</th><th>出现在</th></tr></thead>
+          <tbody>
+            <tr><td><code>userOrgContentUid</code> / <code>grantUserOrgContentUid</code></td><td>当前登录人的自身 / 授权组织节点</td><td>模式 A（通用过滤）</td></tr>
+            <tr><td><code>proxyGrantUserOrgContentUid</code></td><td><strong>代审批人的</strong>授权组织节点（专用）</td><td>模式 B（③⑤）</td></tr>
+            <tr><td><code>approveUsersIncludeProxyUser</code></td><td>含代审批人的审批人链</td><td>模式 B（③⑤）</td></tr>
+            <tr><td><code>nextApproveContentUid</code> / <code>orgContentUid</code></td><td>记录的下一审批节点 / 所属组织节点</td><td>模式 B</td></tr>
+            <tr><td><code>assigneeUid</code> / <code>assignUidSet</code></td><td>任务指派人与指派集合</td><td>④（执行身份校验）</td></tr>
+            <tr><td><code>skipPermissions</code></td><td>跳过权限标志（超管/强制审批 <code>forceApprove</code> 走此）</td><td>④</td></tr>
+          </tbody>
+        </table>
+        <h3>一点诚实的说明</h3>
+        <p>JSON 里只存了<strong>条件表达式及其出现顺序</strong>，不存 <code>if/else</code> 的嵌套方向和语句体。所以「旁路 or 不旁路」的方向、以及 ③⑤ 里「两个条件是否 <code>&amp;&amp;</code> 并列」是我按变量命名和顺序<strong>重建</strong>的（方向极大概率如上，因为 182/185/191 这类自身/授权组织过滤在 <code>proxy_approval_user</code> 之后、且变量就是「当前用户」的组织）。要 100% 坐实，需要 <code>re-yyx-cot-master</code> 源码（本机没有）。</p>
+        <p>需要我把这份还原整理成一篇正式文档落进知识库吗（比如挂到 <code>cot/field-ops/</code> 下，作为「代审批授权逻辑」的取证文档，并登记主题权威/放置规则）？</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Turn 3 ============ -->
+  <div class="turn" data-n="3">
+    <div class="col user-col">
+      <div class="bubble user-bubble">
+        <div class="label">用户</div>
+        <p>待审批功能，能否用于：给糖巧业务团队的KAM授权冰淇淋KAM组织，对冰淇淋业务团队的门店进行审批。是否有自身组织以及业务团队（用户segment）上面的判断限制。用通俗易懂的话来回复我的问题。</p>
+      </div>
+    </div>
+    <div class="col claude-col">
+      <div class="bubble claude-bubble">
+        <div class="label">Claude</div>
+        <p>查清楚了。用大白话给你说结论。</p>
+        <h3>一句话结论</h3>
+        <p><strong>代码逻辑上，这条路走得通</strong>——给糖巧 KAM 授权冰淇淋 KAM 的组织，让他批冰淇淋门店，代审批代码没有"你是糖巧就不准碰冰淇淋"的硬拦截。但<strong>光授权组织还不够</strong>，有个关键前提要满足。</p>
+        <h3>代审批到底卡什么？（就两道，都不看 segment）</h3>
+        <p>从代码还原出来，代审批真正检查的是：</p>
+        <ol>
+          <li>这家门店的<strong>组织节点</strong>在不在你的授权组织里</li>
+          <li>这家门店的<strong>审批人链</strong>里有没有点名你</li>
+        </ol>
+        <p>注意，这两道判断里<strong>都没有"糖巧/冰淇淋（segment）"这个字段</strong>。所以字面上没有跨团队的硬拦。</p>
+        <h3>那"业务团队（segment）"到底有没有限制？</h3>
+        <p><strong>有，但它不是单独一个开关，而是"藏在组织里"的。</strong></p>
+        <ul>
+          <li>糖巧和冰淇淋是<strong>两棵独立的组织树</strong>（销售组织 vs IC_ORG），每个组织节点天生就带着"糖巧"或"冰淇淋"的标签。</li>
+          <li>所以"给糖巧 KAM 授权冰淇淋 KAM 组织"这个动作，<strong>本质上就是在跨团队授权</strong>——而代码对授权动作本身不拦。</li>
+        </ul>
+        <h3>真正的坑：审批人是谁，是按 segment 定的</h3>
+        <p>冰淇淋门店的审批链，是用它的 <code>userSegment=冰淇淋</code> 去解析审批人的（代码 <code>getKam(城市总部, 玛氏编码, userSegment)</code>）。也就是说：</p>
+        <blockquote><p><strong>冰淇淋门店天生分配给冰淇淋 KAM，糖巧 KAM 根本不在它的审批链上。</strong></p></blockquote>
+        <p>所以你要让糖巧 KAM 批冰淇淋门店，得满足两件事：</p>
+        <ul>
+          <li><strong>授权组织</strong>：把冰淇淋 KAM 的组织节点授给这个糖巧 KAM（= 给他发"门卡"）</li>
+          <li><strong>审批人链点名</strong>：这个糖巧 KAM 要被加进那家冰淇淋门店的审批人链里（= 把他登记成"能进这间房的人"）</li>
+        </ul>
+        <p>光有门卡、没登记名字，还是进不去。</p>
+        <h3>自身组织有没有限制？</h3>
+        <p><strong>有，而且这正是代审批的意义所在：</strong></p>
+        <ul>
+          <li>普通用户只能看到并处理"自身组织 ∪ 授权组织"范围内的审批；</li>
+          <li>只有戴了 <code>proxy_approval_user</code>（代审批用户）角色的人，才跳过这个范围限制；</li>
+          <li>但即使跳过了，代审批人也<strong>只能批"授权组织范围内的门店"</strong>，不是无限大——所以"授权冰淇淋 KAM 组织"这一步是绕不过去的。</li>
+        </ul>
+        <h3>一个诚实的提醒</h3>
+        <p>知识库明确写过数据权限是"<strong>segment × 地理 × 覆盖模式</strong>"三个维度。但我在审批的查询/执行代码里，只看到"<strong>组织</strong>"这个维度被直接判断；segment 是靠"组织节点自带属性 + 审批人按 segment 解析"<strong>间接</strong>起作用的。</p>
+        <p>要 100% 坐实"跨 segment 会不会在别处被额外拦"，需要看 <code>getKam / getCityManager / getLineManager</code> 这三个解析审批人的方法的完整实现（确认它们有没有强制"审批人和门店同 segment"）——<strong>本机没有源码，取证 JSON 也没展开到那一层</strong>，这是目前唯一没完全闭合的点。</p>
+        <hr>
+        <p>要不要我：① 在知识库里把「代审批跨 segment 授权」这个结论+证据登记成一则 open question（挂到用户中心的 OQ-U13 或 COT 的 open-questions），方便以后有源码时闭合；② 还是先按你说的场景，去查一下 KAM 这个角色本身在用户中心里是不是已经天然限定了 segment？</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Turn 4 ============ -->
+  <div class="turn" data-n="4">
+    <div class="col user-col">
+      <div class="bubble user-bubble">
+        <div class="label">用户</div>
+        <p>已通过查找代码明确存在segment限制。现状：某糖巧团队用户（segment=糖巧）,自身组织挂在糖巧业务团队的对应KAM组织节点（组织节点1，segment=糖巧），并且维护用户角色为：代审批用户，同时将授权组织维护成：冰淇淋业务团队的对应KAM组织节点（组织节点2，segment=冰淇淋）。以审批人的视角来看，当下待其审批门店的查找逻辑仅查找与当前用户的自身组织segment相匹配的糖巧业务团队发起的待审批门店（覆盖模式包含"糖巧"的门店），无法查询到冰淇淋团队对应门店（覆盖模式="冰淇淋有拜访要求" or "冰淇淋不可拜访"）。实现方案：放开segment限制即可，能实现跨业务团队审批，但该功能依赖业务层面对于用户数据维护上面的管理，因为这个放开不针对某个别用户，而是针对全部用户均放开这个限制，拥有代审批用户权限的人审批权限被放大，需要从业务管理上面规避数据维护错误导致跨团队审批混乱场景。</p>
+      </div>
+    </div>
+    <div class="col claude-col">
+      <div class="bubble claude-bubble">
+        <div class="label">Claude</div>
+        <p>你这一步查得很关键——<strong>正好补上了我上一轮"唯一没闭合"的那个点</strong>。我之前在审批查询/执行的代码事实里只看到"组织"这一维，没抓到 segment 硬拦；你定位到它其实落在<strong>覆盖模式</strong>这条线上（待审批门店按覆盖模式是否含"糖巧"来过滤，冰淇淋门店的覆盖模式是"冰淇淋有拜访要求/冰淇淋不可拜访"，所以天然被过滤掉）。这个结论我完全认同，也跟我看到的代码证据对得上（<code>StoreQasServiceImpl</code> 里那串 <code>shouldIncludeStore(coverMode, userSegment)</code> 判断，以及"数据权限 = segment × 地理 × 覆盖模式"的表述）。</p>
+        <h3>对现状的确认</h3>
+        <p>你的描述我复述一遍，确认理解一致：</p>
+        <ul>
+          <li>用户：segment=糖巧，自身组织=糖巧 KAM 节点，角色=代审批用户，授权组织=冰淇淋 KAM 节点。</li>
+          <li>现状：待审批门店的查询<strong>只按自身组织的 segment（糖巧）过滤覆盖模式</strong>，所以只能看到糖巧发起的门店；冰淇淋门店（覆盖模式≠含"糖巧"）查不到。</li>
+          <li>根因：segment 限制不是在"有没有代审批角色"上卡，而是在<strong>查询的覆盖模式过滤</strong>上卡，而且卡的是"自身组织 segment"，<strong>没用上已经维护好的授权组织</strong>。</li>
+        </ul>
+        <h3>对方案的看法：方向对，但建议"放开得精准一点"</h3>
+        <p>你说"放开 segment 限制即可"，我同意这是本质解法，但想给你一个<strong>更收敛的放开方式</strong>，正好化解你担心的"全部用户一刀切"：</p>
+        <p><strong>不要"全放开到所有 segment"，而是"从'自身 segment'放开到'自身 segment ∪ 授权组织 segment'"。</strong></p>
+        <p>也就是说，查询里 segment 的取值范围，从现在的"只看自身组织 segment"，改成"自身组织 + 授权组织所覆盖的 segment 取并集"。这样：</p>
+        <ul>
+          <li>跨团队能力<strong>由"授权组织"这个已有的数据维护动作驱动</strong>——你给谁授了冰淇淋 KAM 组织，谁就自然能查冰淇淋门店；</li>
+          <li>没授冰淇淋组织的代审批用户，segment 范围还是只有糖巧，<strong>不会被无差别放大</strong>；</li>
+          <li>风险就收敛到"授权组织维护得对不对"这一件事上——而这件事本来就是代审批能成立的<strong>前提</strong>（模式 B 里 <code>proxyGrantUserOrgContentUid.contains(...)</code> 已经在用授权组织卡了），不是新增风险。</li>
+        </ul>
+        <p>换句话说：你担心的"放开后所有代审批用户权限都被放大"，其实可以<strong>做成"按授权组织动态放开"</strong>，不必全局放开。改动点也从"删掉 segment 过滤"变成"把 segment 过滤的数据源从自身组织换成自身∪授权组织"，语义更安全。</p>
+        <h3>关于"依赖业务数据维护"这点</h3>
+        <p>你说得对，这本质是<strong>数据治理问题，不是纯代码问题</strong>。我的建议是把这个约束显式化：</p>
+        <ol>
+          <li>在知识库的<strong>事实登记表 / 主题权威</strong>里写明一条：<strong>"代审批的跨团队范围 = 授权组织决定；授权组织的 segment 与自身不一致时，即产生跨团队审批能力"</strong>——把"这是个有意设计、靠数据维护保证"的共识固化下来。</li>
+          <li>配套一个<strong>机检或人工复核点</strong>：授权组织 segment ≠ 自身 segment 的用户，列为"跨团队代审批"清单，定期复核是否仍有授权必要（对应你担心的"数据维护错误导致混乱"）。</li>
+        </ol>
+        <h3>下一步</h3>
+        <p>要不要我把这套结论（segment 限制的根因 + 现状 + 建议方案）整理成一篇正式文档落进知识库？放哪我建议二选一：</p>
+        <ol>
+          <li><strong>挂到 COT 审批流</strong>（<code>cot/field-ops/</code> 下，比如「代审批 segment 限制与跨团队授权」取证文档），和 <code>cot-master-approval-and-validation.md</code> 并列；</li>
+          <li><strong>登记成开放问题</strong>（挂到用户中心 OQ-U13「授权组织的审批与来源」或 COT open-questions），先记结论和待办，等实现落地后再升级为正式文档。</li>
+        </ol>
+        <p>你倾向哪种？（或者你只是想让我把这轮分析记下来，不改代码、先落个记录也行。）</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Turn 5 ============ -->
+  <div class="turn" data-n="5">
+    <div class="col user-col">
+      <div class="bubble user-bubble">
+        <div class="label">用户</div>
+        <pre class="usertext">当前系统实现（最后更新在2025年末）：
+
+一、组织及用户segment维护
+1. 销售组织树每个节点都需维护segment信息：只允许新建时维护（必选），不允许修改segment取值；
+2. 用户也需要维护segment，维护和校验逻辑：
+  1. segment维护：segment作为标签信息维护到用户；
+  2. segment校验：
+    1. 如果给用户维护多个自身组织，且对应的segment出现多个不一样的取值，校验不通过；
+    2. 如果有维护用户的自身组织，系统根据用户自身组织计算的segment结果与维护的用户segment必须一致，否则校验不通过。（举例：系统计算为：糖巧，用户标签维护必须也是：糖巧）
+    3. 如果没有维护用户的自身组织，则不需要根据用户自身组织计算segment，可以正常通过校验。
+
+二、用户segment与门店覆盖模式的标准映射关系
+1. 用户segment="糖巧"：覆盖模式包含"糖巧固定覆盖"or"糖巧非固定覆盖"or"糖巧不可拜访"or"糖巧承包制经销商DA覆盖"or"糖巧线路外覆盖"的门店；
+2. 用户segment="冰淇淋"：覆盖模式包含"冰淇淋有拜访要求"or"冰淇淋无拜访要求"
+
+三、用户segment使用场景：多个终端的数据权限控制。（门店范围预设（使用覆盖模式）—>结合：用户segment与门店覆盖模式的标准映射关系/玛氏地理/组织关系/人店关系进行数据权限控制）
+1. 公海门店：
+  1.1 门店范围预设：在不同菜单模块下，按覆盖模式对门店范围进行预设；
+  1.2 查询权限控制：在门店预设的覆盖模式基础上，结合自身组织（segment+玛氏地理）+ 授权组织（segment+玛氏地理）进对查询数据权限进行控制；
+  1.3 维护权限控制：在门店预设的覆盖模式基础上，对维护内容进行数据权限控制。
+   1. 维护内容中的门店信息控制：自身组织（segment+玛氏地理）+ 授权组织（segment+玛氏地理）
+   2. 维护内容中的人员信息控制：自身及以下组织（segment+玛氏地理）+ 授权及以下组织（segment+玛氏地理）
+2. 企微端（门店管理、拜访）：用户segment +人店关系做列表查询数据权限控制。
+  1. segment='糖巧'，取对应覆盖模式且糖巧人店关系为当前登录用户的门店；
+  2. segment='冰淇淋'，取对应覆盖模式且冰淇淋人店关系为当前登录用户的门店；
+3. 协访：
+  1. 拜访计划、拜访轨迹：用组织关系做数据权限控制，不变。
+  2. 协访列表：
+    1. 门店范围按糖巧覆盖模式进行预设。
+    2. 用户segment+玛氏地理（自身组织及以下+授权组织组织及以下，玛氏地理并集）做数据权限控制。</pre>
+      </div>
+    </div>
+    <div class="col claude-col">
+      <div class="bubble claude-bubble">
+        <div class="label">Claude</div>
+        <p>这份 spec 很完整，我已经完整消化。先复述确认，再给两个直接影响到你方案的关键洞察。</p>
+        <h3>复述确认（确保理解一致）</h3>
+        <ul>
+          <li><strong>segment 维护</strong>：组织节点新建时必选、之后不可改；用户 segment 作为标签维护，配套三条校验（多个自身组织 segment 必须一致；自身组织算出的 segment 必须等于用户标签 segment；无自身组织则免校验）。</li>
+          <li><strong>segment ↔ 覆盖模式映射</strong>：糖巧 → 5 类「糖巧*」覆盖模式；冰淇淋 → 2 类「冰淇淋*」覆盖模式。</li>
+          <li><strong>使用场景</strong>：公海门店、企微端、协访三处，都是「segment + 玛氏地理 + 组织/人店关系」的组合做数据权限。</li>
+        </ul>
+        <h3>洞察 1：公海门店的查询权限，本来就已含「授权组织 segment」</h3>
+        <p>你这份 spec 里，公海门店的<strong>查询权限控制</strong>写的是：</p>
+        <blockquote><p>自身组织（segment+玛氏地理）<strong>+ 授权组织（segment+玛氏地理）</strong></p></blockquote>
+        <p>也就是说——<strong>「自身 + 授权组织」这个模型，在公海门店已经是标准做法</strong>，授权组织带什么 segment 本来就在权限范围里。</p>
+        <p>而上一轮你说代审批的「待审批门店查询」<strong>只按自身组织 segment 过滤</strong>。两者一对照，结论很干净：</p>
+        <blockquote><p><strong>代审批的待办查询是"异类"——它没跟公海门店标准模型对齐，只用了自身组织 segment，把授权组织 segment 漏掉了。</strong></p></blockquote>
+        <p>所以「放开 segment 限制」这个方案，本质<strong>不是开一个新口子，而是让代审批查询对齐到系统已有的「自身 + 授权组织 segment」模型</strong>。风险面比「全局放开」小得多，也符合系统一贯语义。</p>
+        <h3>洞察 2：segment 校验只覆盖「自身组织」，没覆盖「授权组织」</h3>
+        <p>你的三条校验（一.2）全部围绕<strong>自身组织</strong>的一致性，<strong>没有任何一条校验「授权组织的 segment」</strong>。也就是说，「自身=糖巧、授权=冰淇淋」这种组合，在现有校验下是<strong>完全合法、且不告警的</strong>——这正是你担心的「数据维护错误导致跨团队混乱」的风险源。</p>
+        <h3>由此收敛的建议</h3>
+        <ol>
+          <li><strong>代码侧</strong>：把代审批待办查询的 segment 数据源，从「自身组织」改成「自身组织 ∪ 授权组织」——即对齐公海门店已有的查询权限模型。这样「给谁授了冰淇淋组织，谁就能查冰淇淋门店」，能力由授权组织驱动，不是全体代审批用户一刀切。</li>
+          <li><strong>治理侧（补校验）</strong>：在现有 segment 校验基础上，对<strong>授权组织</strong>补一条规则——授权组织 segment ≠ 自身组织 segment 时，要么走显式登记/审批，要么至少进「跨团队代审批清单」定期复核。把风险从「无感静默」变成「显式可见」。</li>
+        </ol>
+        <h3>下一步</h3>
+        <p>这份 spec + 两点洞察很适合沉淀进知识库。建议：</p>
+        <ul>
+          <li>把「segment 维护 / 映射 / 使用场景」作为一份<strong>权威文档</strong>（挂用户中心或门店中心，登记主题权威）；</li>
+          <li>把「代审批待办查询未对齐『自身+授权组织』模型、且授权组织 segment 无校验」登记为一条<strong>开放问题</strong>（可挂 OQ-U13「授权组织的审批与来源」名下）。</li>
+        </ul>
+        <p>要我按这个落知识库吗？还是你先确认这两点洞察和你的判断一致，我们再往下走？</p>
+        <p>（顺带说一句：我已在记忆里存了这条环境事实——本机 GitHub HTTPS 不通、走 Trae SSH、服务端源码不在本机，方便以后不再重复排查。）</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Turn 6 ============ -->
+  <div class="turn" data-n="6">
+    <div class="col user-col">
+      <div class="bubble user-bubble">
+        <div class="label">用户</div>
+        <p>检索原先知识库中是否有这部分信息。</p>
+      </div>
+    </div>
+    <div class="col claude-col">
+      <div class="bubble claude-bubble">
+        <div class="label">Claude</div>
+        <p>检索完了。结论很明确：<strong>你这份 spec 的绝大部分，知识库里已经有了，而且已经收敛到一份"单一权威"文档里</strong>。逐项对照如下。</p>
+        <h3>结论：已存在，且已是权威文档</h3>
+        <p><strong>主文档：<a href="clients/mars/systems/business-middle-platform/store-center/concepts/data-permission-model.md">data-permission-model.md</a>（门店中心数据权限模型）</strong> —— 文件头明确声明它是"门店中心数据权限的单一权威"，把之前散落在 BR-SD-703~705、Action、多个 Feature 里的规则都收敛到这里了。</p>
+        <h3>逐项对照（你的 spec → 知识库现有位置）</h3>
+        <table>
+          <thead><tr><th>你 spec 的部分</th><th>知识库位置</th><th>是否一致</th></tr></thead>
+          <tbody>
+            <tr><td><strong>一.1 组织 segment：新建必选、修改不可改</strong></td><td><code>data-permission-model.md</code> §2.3「组织 segment 只允许新建时维护，不允许修改」</td><td>✅ 完全一致</td></tr>
+            <tr><td><strong>一.2 用户 segment 校验</strong>（多个自身组织不一致不通过 / 自身组织算出的 segment 必须=用户标签 / 无自身组织免校验）</td><td>同文档 §2.1「segment 一致性约束（BR-SD-331）」+ §2.3</td><td>✅ 三条全有，逐字对应</td></tr>
+            <tr><td><strong>二. segment ↔ 覆盖模式映射</strong>（糖巧 5 类 + 冰淇淋 2 类）</td><td><a href="clients/mars/systems/business-middle-platform/store-center/ontology/value-types.md">value-types.md</a> §<code>CoverageMode</code>（7 值）+ <a href="clients/mars/features/store-definition-coverage.md">store-definition-coverage.md</a>「覆盖模式 7 值」</td><td>✅ 7 值完全对应</td></tr>
+            <tr><td><strong>三. 三类终端使用场景</strong>（公海门店 / 企微端 / 协访）</td><td><code>data-permission-model.md</code> §3「三类终端的使用差异」</td><td>✅ 三条逐一对应</td></tr>
+          </tbody>
+        </table>
+        <p>也就是说，你不需要从零新写文档——要改也是在<strong>这份权威文档上增补</strong>，否则会违反"一题一权威"的门禁规则。</p>
+        <h3>一个对你之前"放开 segment"方案有直接影响的关键发现</h3>
+        <p>现有权威文档 §2.1 已经<strong>明确回答了跨 segment 授权的问题，而且答案比"全放开"更精细</strong>：</p>
+        <blockquote><p><strong>"跨 segment 授权不是屏蔽，而是按'交集门店'有限开放"</strong></p></blockquote>
+        <p>配套测试用例（GH018）：用户自身=糖巧(东区)、授权1=糖巧(西区)、<strong>授权2=冰淇淋(北区)</strong>，期望结果：</p>
+        <table>
+          <thead><tr><th>情形</th><th>是否可见/可维护</th></tr></thead>
+          <tbody>
+            <tr><td>糖巧授权地理内、覆盖模式含糖巧</td><td>✅</td></tr>
+            <tr><td><strong>冰淇淋授权地理内、覆盖模式同时含糖巧+冰淇淋（双覆盖门店）</strong></td><td>✅</td></tr>
+            <tr><td>冰淇淋授权地理内、<strong>仅</strong>冰淇淋覆盖</td><td>❌</td></tr>
+          </tbody>
+        </table>
+        <p>也就是说，<strong>现有模型里授权组织的 segment 本来就会参与计算</strong>，但跨 segment 只开放"双覆盖门店"，<strong>纯冰淇淋覆盖的门店（=你说的"冰淇淋有拜访要求/无拜访要求"）对糖巧用户仍然不可见</strong>。</p>
+        <h3>这带来的一个需要你拍板的分歧</h3>
+        <p>你之前的方案是"<strong>放开 segment 限制即可</strong>"，目标是让糖巧 KAM 能批冰淇淋团队的门店（覆盖模式=冰淇淋有拜访要求/无拜访要求，<strong>正是纯冰淇淋门店</strong>）。</p>
+        <p>但按知识库现有权威模型，"放开到能看纯冰淇淋门店"这件事，<strong>已经超出了现有模型的允许范围</strong>（现有模型最多放开到"双覆盖门店"）。所以现在其实有两个不同层次的目标：</p>
+        <ol>
+          <li><strong>对齐现有模型</strong>：让代审批待办查询补上"授权组织 segment"这一维 → 糖巧 KAM 只能看到冰淇淋地理内的<strong>双覆盖门店</strong>，纯冰淇淋门店仍不可见；</li>
+          <li><mark><strong>超出模型、真·跨团队代审批</strong>：让糖巧 KAM 能看到并批<strong>纯冰淇淋门店</strong> → 这需要改模型本身，属于"有意放宽"，得在文档里显式登记这是新规则，而不是"修复 bug"。</mark></li>
+        </ol>
+        <p>你想要的到底是哪个？如果是 2，那"放开 segment"就是<strong>新增一条跨团队授权规则</strong>，需要走事实登记/主题权威的变更，并补上你之前担心的"数据维护错误"治理措施。</p>
+        <h3>顺带一个小术语提示</h3>
+        <p>权威取值里冰淇淋那两类是「<strong>冰淇淋有拜访要求 / 冰淇淋无拜访要求</strong>」（7 值，见 value-types.md）。你消息里出现过「冰淇淋<strong>不可</strong>拜访」——如果这是业务上的另一种叫法，<mark>建议在术语登记表里核对一下是否要登记成易混对，避免以后检索对不上</mark>。</p>
+        <p>要不要我：① 把这轮"你的 spec 与现有文档的对照 + 跨 segment 两层目标的分歧"整理成一条开放问题挂到 OQ-U13 / COT open-questions；② 还是直接帮你在 <code>data-permission-model.md</code> 上起草"代审批待办查询未对齐本模型"的补丁段落？</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Turn 7 ============ -->
+  <div class="turn" data-n="7">
+    <div class="col user-col">
+      <div class="bubble user-bubble">
+        <div class="label">用户</div>
+        <p>这涉及到门店主数据管理权限问题，为避免重复建店，门店主数据不会按业务团队完全隔离开，而是进行了门店去重，因此出现部分门店是由糖巧和冰淇淋业务团队共同覆盖，主数据信息共用，但是人店关系按团队分开独立字段，这部分门店管理权限为糖巧业务团队，冰淇淋业务团队能够进行管理的只有仅冰淇淋覆盖的门店。</p>
+      </div>
+    </div>
+    <div class="col claude-col">
+      <div class="bubble claude-bubble">
+        <div class="label">Claude</div>
+        <p>检索完了。你这段话其实拆成三层，库里的覆盖程度不一样——<strong>有两层已经有，一层是缺口，而且这个缺口正是"放开 segment 限制"方案会踩到的坑</strong>。</p>
+        <h3>逐条对照：库里有 / 没有</h3>
+        <table>
+          <thead><tr><th>你说的</th><th>库里有没有</th><th>出处</th></tr></thead>
+          <tbody>
+            <tr><td><strong>人店关系按团队分开、独立字段</strong></td><td>✅ 已有，且坐实得比你给的还细</td><td><code>store_center_data_dictionary.md:246</code>：冰淇淋侧有 4 个独立字段 <code>ic_salesman_code/name</code>、<code>ic_store_manager_code/name</code>，且<strong>没有状态与员工类型</strong>；库里原话"糖巧人店关系与冰淇淋人店关系是<strong>两套数据</strong>，不是同一字段的两种取值"</td></tr>
+            <tr><td><strong>双覆盖门店（糖巧+冰淇淋共同覆盖，主数据共用）</strong></td><td>✅ 有"现象"，但只记了<strong>可见性</strong></td><td><code>data-permission-model.md</code> §2.1（GH018 用例）：冰淇淋地理内、"既是糖巧又是冰淇淋的门店"✅ 可见；"仅冰淇淋覆盖"❌</td></tr>
+            <tr class="gap-row"><td><strong>为避免重复建店，主数据去重、不按团队隔离</strong>（设计动机）</td><td>⚠️ 没有显式写成一条原则</td><td>只能从 §2.1 的"交集门店"反推，库里没写"门店主数据去重/不隔离"这个 rationale</td></tr>
+            <tr class="gap-row"><td><strong>双覆盖门店的管理权归糖巧，冰淇淋只能管理仅冰淇淋覆盖门店</strong></td><td>❌ <strong>没有</strong>，这是缺口</td><td>库里只有"两边都看得到双覆盖门店"，没有"谁有管理权"</td></tr>
+          </tbody>
+        </table>
+        <h3>关键点：库里写的是"可见"，你讲的是"管理权"，两者不是一回事</h3>
+        <p><code>data-permission-model.md</code> 目前说的是<strong>数据可见性</strong>：一个糖巧用户被授权了冰淇淋组织，他能"看到"双覆盖门店（✅），但看不到纯冰淇淋门店（❌）。<mark>它<strong>没有</strong>说"双覆盖门店到底归谁管"</mark>。</p>
+        <p>而你给的是<strong>管理权归属</strong>：双覆盖门店管理权归糖巧，冰淇淋能动手的只有"仅冰淇淋覆盖"的门店。<mark>这条优先级规则库里<strong>没有</strong></mark>，而且库里自己在 <code>data-permission-model.md:94</code> 的"未决"表里还写着：</p>
+        <blockquote><p>"多 segment 用户的判定优先级 | 规则描述为'合并去重'，但<mark><strong>双覆盖门店在各终端的具体可见性组合未逐终端验证</strong></mark>"</p></blockquote>
+        <p>也就是说，这块（双覆盖门店的归属/可见性组合）<mark>库里<strong>自己也标成没验证清楚</strong></mark>，你的这条业务口径正好能补上它。</p>
+        <h3>对"放开 segment 限制"方案的含义</h3>
+        <p>这正是我之前提醒过的风险，现在有了明确结论：</p>
+        <ul>
+          <li>现在糖巧代审批用户查待办，是"按自身组织 segment 匹配糖巧门店"，所以审不到冰淇淋门店。</li>
+          <li>如果<strong>放开 segment</strong>，糖巧代审批用户不仅能审到糖巧门店，还会<strong>跨进纯冰淇淋覆盖门店</strong>（仅冰淇淋门店）。</li>
+          <li>但这恰恰违背了你刚说的管理权边界：<strong>纯冰淇淋覆盖门店归冰淇淋管</strong>，糖巧代审批不该碰。</li>
+        </ul>
+        <p>所以正确的解法不是"全放开 segment"，而是<strong>放开 segment、但保留覆盖模式门槛</strong>——让糖巧代审批只能跨到"双覆盖门店"（糖巧+冰淇淋都覆盖、管理权本就在糖巧），<strong>仍然够不到纯冰淇淋门店</strong>。这样既实现了跨团队审批，又不破坏"冰淇淋管仅冰淇淋门店"的边界。库里 §2.1 已经给了这个过滤条件（"覆盖模式同时含糖巧与冰淇淋"✅ / "仅冰淇淋"❌），改的时候照着它做就行，不需要新造规则。</p>
+        <hr>
+        <p>要不要我把这条<strong>管理权归属规则</strong>补进 <code>data-permission-model.md</code>（它就是单一权威，双覆盖门店的"可见"和"管理权归属"应该在同一个地方说清）？我可以顺带把 <code>data-permission-model.md:94</code> 那条"未逐终端验证"的未决项一起消掉。你点头我就动手。</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footnote">
+  共 7 轮问答 · 覆盖「代审批实现定位 → 分支逻辑还原 → 跨 segment 审批 → segment 限制根因 → 数据权限模型对照 → 双覆盖门店管理权」
+</div>
+
+</body>
+</html>

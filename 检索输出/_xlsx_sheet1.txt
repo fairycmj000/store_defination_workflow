@@ -1,0 +1,84 @@
+																							有T&M标准		RTM渠道属于：“NONKA MT”,“FT-TT”,“FT-Special Channel”,“FT Seeding Channel”
+	Channel Segmentation			具体定义-店型定义描述									RTM		历史数据刷新			门店管理					拜访			下单		MW团队考核				IC团队考核					DA团队
+	Level 1	Level 2	Level 3	业务目的	客户白名单	#C-Store（城市总部是否连锁）	收银台	ePOS	面积 (m2)	营业时间	是否高端	其他	RTM类型 / (2025)	RTM类型 / (2026)	历史数据刷新指引	2025三级店型	2025新兴渠道店型判断条件	建店方式 / （默认可全部后台）	建店审批流	新建	修改	关店	覆盖模式 / （是否拜访）	是否有T&M	线路外覆盖	建店数字化标签 / （现售/预售/总仓）	建店数字化标签 / （现售/预售）	EO R3P 标记	完美门店-线下	完美门店-线上	MW团队冰品考核范畴 - Sylvia	IC团队 表单 - Sylvia	IC团队 考核 - Sylvia	IC团队 陈列表单 - Sylvia	IC团队 完美分销 - Sylvia	IC团队 国标分销 - Sylvia	DA 是否可建店 - Vince
+	MT  / 现代渠道	Cash&Carry 仓储式卖场	Cash&Carry 仓储式卖场		Y	≥10	≥20	Y	≥6,000			大宗产品/会员制	NKA/RKA/LKA	NKA/RKA/LKA	按指定客户清单，直接确认店型			手机	Y-二级，主管+KAM or 城市群经理	follow 原MT审批流			Y	Y		RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+		Hyper 大卖场	Chain Hyper 连锁大卖场			≥10	≥20	Y	≥6,000						联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+		Super 超级市场	Chain Large Super 连锁大型超市			≥10	≥7	Y	≥1,200						联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+			Chain Standard Super 连锁标准超市			≥10	≥3	Y	≥1,200						联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+			Chain Premium Super 连锁高端超市			≥10	≥3	Y	≥1,200		Y	40%进口产品			联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+		Mini 小型超市	Chain Mini 连锁小型超市			≥10	<3	Y	<1,200						联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA		FT-Non KA	Y		Y	Y			Y	Y
+		CVS 便利店	Mass CVS 大众便利店			≥10	≥1	Y	<500	≥16h					联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+			Premium CVS 高端便利店		Y	≥10	≥1	Y	<500	≥16h	Y	客户白名单			按指定客户清单，直接确认店型			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+		Personal Care 个人护理店			Y	≥10	≥1	Y	<500						按指定客户清单，直接确认店型			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA					Y	Y			Y	Y
+新增		Fresh Food 生鲜店	Chain Fresh Food 连锁生鲜店	解决”清美“等生鲜店的定位及考核标准问题（目前放在MINI中不适合PS标准）	Y(仅历史数据用指定客户：清美刷新)	≥10	≥1	Y				蔬菜鲜肉 (不含水果) 陈列面积≥70%	N/A		按指定客户清单，直接确认店型			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA					Y	Y			Y	Y
+调整		Discount 折扣店	Discount 折扣店	解决折扣店分类及不再属于”新模式“的问题	Y	以售卖临期产品为主的线下门店，如好特卖，嗨特购,或通过供应链优化而降低经营成本实现直接低价策略的线下门店，如奥乐齐，乐尔乐，条马，奥特乐，京小盒，折扣牛等							KA-NM/FT-NM		按指定客户清单，直接确认店型			手机	Y-二级，主管+KAM or 城市群经理				不拜访->非固定覆盖？	N							N	Y	Y		Y	Y
+		Hyper 大卖场	Indp. Hyper 独立大卖场			<10	≥20	Y	≥6,000				FT-Non KA	FT-Non KA	联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y	FT-Non KA MT	RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+		Super 超级市场	Indp. Large Super 独立大型超市			<10	≥7	Y	≥1,200						联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y	FT-Non KA MT	RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+			Indp. Standard Super 独立标准超市			<10	≥3	Y	≥1,200						联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y	FT-Non KA MT	RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+			Indp. Premium Super 独立高端超市			<10	≥3	Y	≥1,200		Y	40%进口产品			联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y	FT-Non KA MT	RKA/LKA/FT-NON KA			Y		Y	Y			Y	Y
+		Mini 小型超市	Indp. Mini 独立小型超市			<10	<3	Y	<1,200						联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y	FT-Non KA MT	RKA/LKA/FT-NON KA		FT-Non KA	Y		Y	Y			Y	Y
+新增		Fresh Food 生鲜店	Indp. Fresh Food 单体生鲜店	解决”清美“等生鲜店的定位及考核标准问题（目前放在MINI中不适合PS标准）		<10	≥1					蔬菜鲜肉 (不含水果) 生意占比≥70%	N/A		无			手机	Y-二级，主管+城市群经理				Y	Y	FT-Non KA MT	RKA/LKA/FT-NON KA					Y	Y			Y	Y
+	Traditional Trade / 传统渠道	Warehouse 仓卖店				<10	≥1		40-70			食杂售卖区域>50%	FT-TT	FT-TT	  单一条件映射直接映射：2025店型/店型判断条件	仓卖店		手机	N	follow 原TT，无需审批			Y	Y	FT-TT		FT-TT	FT-TT	Y			Y				Y
+		Grocery 食杂店				<10	≥1		<40			食杂售卖区域>50%			  单一条件映射直接映射：2025店型/店型判断条件	食杂店		手机	N				Y	Y	FT-TT		FT-TT	FT-TT	Y			Y				Y
+		Tobacco & Spirit 烟酒店				<10	≥1					烟酒售卖区域>50%			  单一条件映射直接映射：2025店型/店型判断条件	烟酒店		手机	N				Y	Y	FT-TT		FT-TT	FT-TT	Y			Y				Y
+调整		Kiosk & others 亭摊档和其他	Kiosk & others 亭摊档和其他	解决 水果店 混在TT里的问题		<10	≥1					亭摊店，文具店等			  单一条件映射直接映射：2025店型/店型判断条件	亭摊档和其他		手机	N				Y	Y	FT-TT		FT-TT	FT-TT	Y			Y				Y
+	Snacking / 零食渠道	National Chain Customer 全国重点连锁零食客户	National Chain Customer 全国重点连锁零食客户		Y	全国层面重点连锁零食店							NKA	NKA	按指定客户清单，直接确认店型			手机	Y-二级，主管+KAM	follow 原Snacking审批流			不拜访->非固定覆盖	N								Y				Y
+		Regional Chain Customer 大区连锁零食客户	Regional Chain Customer 大区连锁零食客户		Y	大区层面重点连锁零食店							RKA	RKA	按指定客户清单，直接确认店型			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA						Y				Y
+		Local Chain Customer 区域连锁零食客户	Local Chain Customer 区域连锁零食客户			省区层面重点连锁零食店							LKA	LKA	联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+KAM or 城市群经理				Y	Y		RKA/LKA/FT-NON KA						Y				Y
+		Independent Store 单体零食店	Independent Store 单体零食店			地方中小型单体零食门店							FT-Non KA	FT-Non KA	联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y		RKA/LKA/FT-NON KA						Y				Y
+调整	Special Channel / 特殊渠道	Travelling / 出行	Airport 飞机场售点	解决出行门店站内站外含糊不清及KA连锁店是否属于出行门店范围的问题。		机场站内零售店（站内，且非KA，如7/11属于MT-CVS，不属于SC-出行渠道）							KA-NC/FT-NC	KA-Special Channel/FT-Special Channel	  单一条件映射直接映射：2025店型/店型判断条件	飞机场售点		手机	N	无需审批			Y	Y	FT-Special	KA/FT-Special						Y
+调整			Railway 火车站售点			火车/汽车等站内零售零售店（站内，且非系统MT-KA客户）									  单一条件映射直接映射：2025店型/店型判断条件	火车站售点		手机	N				Y	Y	FT-Special	KA/FT-Special						Y
+调整			Highway 高速服务区售点			高速服务区零售店（不含加油/充电站，且非系统MT-KA客户）									  单一条件映射直接映射：2025店型/店型判断条件	高速服务区售点		手机	N				Y	Y	FT-Special	KA/FT-Special			Y			Y
+调整			Scenic Spots 景区售点			旅游景点，游乐园，度假村内零售店；或有特定景区供货关系的门店（园区内，且非系统MT-KA客户）									  单一条件映射直接映射：2025店型/店型判断条件	景区售点		手机	N				Y	Y	FT-Special	KA/FT-Special						Y
+调整		Power Station 加油/充电站	Gas Station 加油站			加油站内零售便利店（站内，且非系统MT-KA客户）									  单一条件映射直接映射：2025店型/店型判断条件	连锁加油站、独立加油站		手机	N				Y	Y	FT-Special	KA/FT-Special			Y			Y
+新增			Charging Station 充电站	解决充电站和加油站的考核标准差异性问题。		充电站内的零售商店（站内，且非系统MT-KA客户）							N/A		无			手机	N				Y	Y	FT-Special	KA/FT-Special						Y
+新增		School 校园店  	School Super 校园内标准超市	解决封闭渠道范围模糊不清的问题。		大学/专科/中小学内标准超市（仅校园内，且非MT-KA）							KA-NC/FT-NC		联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	N				Y	Y	FT-Special	KA/FT-Special			Y			Y
+新增			School Mini 校园内小型超市	解决校园店考核标准差异性的问题。		大学/专科/中小学内小型超市（仅校园内，且非MT-KA）									联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	N				Y	Y	FT-Special	KA/FT-Special		FT-Special	Y			Y
+新增			School TT 校园内TT店			大学/专科/中小学内TT店（仅校园内）									联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	N				Y	Y	FT-Special	KA/FT-Special		FT-Special	Y			Y
+新增			School Service 校园供应		Y	校园服务商/后端供应链服务商或平台，例如"掌上大学"							N/A		按指定客户清单，直接确认店型			后台	Y，邮件，城市群经理-channel owner（stone）				不拜访	N								Y
+新增		Factory & Company & Government 工厂企事业	Factory & Company & Government Group purchase 工厂企事业团购	解决封闭渠道范围模糊不清的问题。		购买类型作为工厂/企业/事业单位的员工福利发放的客户							KA-NM/FT-NM		  单一条件映射直接映射：2025店型/店型判断条件	大宗团购		手机	N	 城市群经理——>一级渠道channel owner (固定人员)。（建店时，需要填写信息：合作合同/资质/营业执照， 工厂企事业团购必填，工厂内门店非必填）			不拜访->非固定覆盖？	N								Y
+新增			Factory & Company & Government Store 工厂企事业内门店	解决封闭渠道范围模糊不清的问题。		以工厂/企业/事业单位内零售店作为合作对象（园区内，且非系统MT-KA客户）									  单一条件映射直接映射：2025店型/店型判断条件	封闭场景		手机	N				Y	Y	FT-Special	KA/FT-Special						Y
+调整		Horeca 餐饮酒店	Food Service 餐饮供应	解决餐饮专属供应链客户的定位问题。	Y	食品服务商/餐饮渠道后端供应链服务商（非门店）							Horeca		按指定客户清单，直接确认店型			后台	Y-二级 城市群经理 - channel owner(stone 代)，供货证明，营业执照等	无手机端建店，无审批流			不拜访	N								Y
+调整			Chain Restaurant 连锁餐饮			连锁性的餐饮，包括咖啡/奶茶等饮品门店									联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级 城市群经理 - channel owner(stone 代)	无需审批			不拜访->非固定覆盖？	N								Y
+调整			Indp. Restaurant 非连锁餐饮			非连锁性的餐饮门店									联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y，邮件，城市群经理-channel owner（stone）				Y	Y	FT-Special	KA/FT-Special						Y
+调整			Hotel 酒店			提供住宿服务的酒店内的门店，包含连锁和非连锁（不含电竞类）									无			手机	N				Y	Y	FT-Special	KA/FT-Special						Y
+调整		Pharmacy 药店	Pharmacy 药店	解决封闭渠道范围模糊不清的问题。		提供药品销售的零售商店							KA-NC/FT-NC		  单一条件映射直接映射：2025店型/店型判断条件	药店		手机	N				Y	Y	FT-Special	KA/FT-Special						Y
+调整		Collection Store 集合店潮玩店	Collection Store 集合店潮玩店	解决集合潮玩店已不再是新模式的问题。		以潮流玩具和时尚生活用品为主的销售商店							KA-NM/FT-NM		  单一条件映射直接映射：2025店型/店型判断条件	新兴模式		手机	N				不拜访->非固定覆盖？	N								Y
+		Wedding 喜礼	Offline Wedding 线下喜铺			线下实体散装糖果喜铺							KA-NC/FT-NC		  单一条件映射直接映射：2025店型/店型判断条件	线下喜铺		手机	N				Y	Y	FT-Special	KA/FT-Special			Y			Y
+调整	Seeding Channel / 种子渠道	Gaming 电竞场所	Internet Bar 网吧	解决seeding channel的定位/定义问题。		网吧							KA-NC/FT-NC	FT/KA Seeding Channel	  单一条件映射直接映射：2025店型/店型判断条件		非常规休闲食品零售门店（网吧网咖）	手机	N			follown 原NC	Y	Y	FT-Seeding	KA/FT-Seeding						Y
+新增			Gaming Hotel 电竞酒店			提供电竞娱乐的酒店									  单一条件映射直接映射：2025店型/店型判断条件		非常规休闲食品零售门店（电竞酒店）	手机	N				Y	Y	FT-Seeding	KA/FT-Seeding						Y
+调整		Hospital 医院	Hospital 医院			常规医院内的门店									  单一条件映射直接映射：2025店型/店型判断条件,联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息		非常规休闲食品零售门店（医院）	手机	N				Y	Y	FT-Seeding	KA/FT-Seeding						Y
+调整		Fruit Store 水果店	Fruit Store 水果店			主要售卖水果的水果零售店（水果陈列面积≥70%）									  单一条件映射直接映射：2025店型/店型判断条件		非常规休闲食品零售门店（水果店）	手机	N				Y	Y	FT-Seeding	KA/FT-Seeding						Y
+新增		Sports & Performing Center 运动场馆&演艺馆	Sports & Performing Center 运动场馆&演艺馆			运动场馆/演艺场馆内的门店，如：羽毛球，篮球，桌球等场馆							N/A		  单一条件映射直接映射：2025店型/店型判断条件		非常规休闲食品零售门店（体育场馆）	手机	N				Y	Y	FT-Seeding	KA/FT-Seeding						Y
+新增		Board-Game Shop 桌游店	Board-Game Shop 桌游店			提供桌游，包括剧本杀，麻将棋牌等的娱乐场所内的门店							N/A		  单一条件映射直接映射：2025店型/店型判断条件		非常规休闲食品零售门店（桌游剧本杀）	手机	N				Y	Y	FT-Seeding	KA/FT-Seeding						Y
+新增		Other Seeding Fragmented stores 其他种子渠道单体店	Other Seeding Fragmented stores 其他种子渠道单体店			其他种子渠道单体店，例如电影院，夜店等。							N/A	FT Seeding Channel	  单一条件映射直接映射：2025店型/店型判断条件		非常规休闲食品零售门店（其它）	手机	N				Y	Y	FT-Seeding	KA/FT-Seeding						Y
+	New Model / 新模式	Vending Machine 无人售卖终端	Vending Machine 无人售卖终端			无人零售设备或店铺（如自动贩卖机、MM Colorworks）							KA-NM/FT-NM	New Model	  单一条件映射直接映射：2025店型/店型判断条件	无人售卖终端		后台	Y, 邮件，channel owner (Taylor Wei)	冰淇淋业务员：手机端建店，无审批流 / 糖巧业务员：无手机端建店，无审批流@程娴变更			不拜访	N								Y
+		Authorized 授权模式	Authorized 授权模式			销售玛氏产品给客户同时授权客户在产品上使用玛氏品牌资产的生意模式，如味全等									  单一条件映射直接映射：2025店型/店型判断条件	授权模式		后台	Y, 邮件，channel owner (Taylor Wei)	无手机端建店，无审批流			不拜访	N
+调整		Emerging 新兴渠道	Emerging 新兴渠道	解决emerging业态的范围问题。（潮玩集合店已挪出到SPECIAL）		新兴业态，如亲子乐园等									  单一条件映射直接映射：2025店型/店型判断条件	创新模式		后台	Y, 邮件，channel owner (Taylor Wei)				不拜访	N
+调整	WS 批发渠道	Urban WS 市区批发	市区批发行商			市区批发客户有1名及以上业务或车销拜访门店进行拿订单等服务。							WS	WS	  单一条件映射直接映射：2025店型/店型判断条件/客户类型（行商/坐商）	市区批发行商		手机	Y-二级，主管+城市群经理	follow 原审批流			Y	Y			WS	WS	Y			Y				Y
+			市区批发坐商			市区批发客户坐等下游门店上门取货或者报单送货，无业务拜访。									  单一条件映射直接映射：2025店型/店型判断条件/客户类型（行商/坐商）	市区批发坐商		手机	Y-二级，主管+城市群经理				Y	Y			WS	WS	Y			Y				Y
+		County WS县级批发	县级批发行商			县级批发客户有1名及以上业务或车销拜访门店进行拿订单等服务。									  单一条件映射直接映射：2025店型/店型判断条件/客户类型（行商/坐商）	县级批发行商		手机	Y-二级，主管+城市群经理				Y	Y			WS	WS	Y			Y				Y
+			县级批发坐商			县级批发客户坐等下游门店上门取货或者报单送货，无业务拜访。									  单一条件映射直接映射：2025店型/店型判断条件/客户类型（行商/坐商）	县级批发坐商		手机	Y-二级，主管+城市群经理				Y	Y			WS	WS	Y			Y				Y
+		Town WS镇级批发	镇级批发行商			镇级批发客户有1名及以上业务或车销拜访门店进行拿订单等服务。									  单一条件映射直接映射：2025店型/店型判断条件/客户类型（行商/坐商）	镇级批发行商		手机	Y-二级，主管+城市群经理				Y	Y			WS	WS	Y			Y				Y
+			镇级批发坐商			镇级批发客户坐等下游门店上门取货或者报单送货，无业务拜访。									  单一条件映射直接映射：2025店型/店型判断条件/客户类型（行商/坐商）	镇级批发坐商		手机	Y-二级，主管+城市群经理				Y	Y			WS	WS	Y			Y				Y
+		家批 （冰淇淋only）	家批 （冰淇淋only）												  单一条件映射直接映射：2025店型/店型判断条件/客户类型（行商/坐商）	家批		手机					不拜访	N								Y				Y
+新增	Bulk 散装联营	Bulk 散装联营	Bulk 散装联营	解决散装联营客户混在TT渠道中的问题。		经销商下游散装专供商（非直营）							Bulk 散装联营	Bulk 散装联营	指定门店清单—散装联营			手机	Y-二级，主管+RCM?	主管+城市群经理审批	待定	待定	不拜访->非固定覆盖？	N
+	EoM 小镇青年	EoM 小镇青年	EoM 小镇青年										EoM	EoM	  单一条件映射直接映射：2025店型/店型判断条件	小镇青年		后台	Y, 邮件，channel owner (Vince Zhong)	无手机端建店，无审批流			不拜访	N
+调整	Online Plaptform / 线上平台渠道	O2O 即时零售	Platform-Based - National Chain 平台式前置仓-全国连锁		Y	有线下门店 (前店后仓)，但不对外营业，需人员拜访							O2O前置仓	O2O前置仓	按指定客户清单，直接确认店型			手机	Y-二级，主管+城市群经理	follow 原Online审批流			Y	Y		O2O前置仓						Y
+			Platform-Based - Regional Chain 平台式前置仓-区域连锁			有线下门店 (前店后仓)，但不对外营业，需人员拜访									联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y		O2O前置仓						Y
+			Platform-Based - Independent Store 平台式前置仓-散仓			有线下门店 (前店后仓)，但不对外营业，需人员拜访									联合判断条件：商圈环境/门店特征/城市总部/营业时间/面积/收银口等信息			手机	Y-二级，主管+城市群经理				Y	Y		O2O前置仓						Y
+			Platform-Owned 自营式前置仓		Y	平台式下属前置仓，如叮咚/朴朴/小象超市									  单一条件映射直接映射：2025店型/店型判断条件	生鲜电商		后台-->手机					不拜访->非固定覆盖？	N								Y
+		eB2B	eB2B			全国eB2B平台，如京喜通							eRTM	eRTM	  单一条件映射直接映射：2025店型/店型判断条件	B2B大仓		后台		无手机端建店，无审批流			不拜访	N
+		CGP	CGP			社区团购，如多多买菜							eRTM(美团优选/淘菜菜)/ / DCOM(多多买菜)	DCOM	  单一条件映射直接映射：2025店型/店型判断条件	社区团购		后台					不拜访	N
+		Traditional E-Commerce 传统电商	Flagship 品牌旗舰店										DCOM		  单一条件映射直接映射：2025店型/店型判断条件	传统电商品牌旗舰店		后台					不拜访	N
+			Self-Operated 平台自营店												  单一条件映射直接映射：2025店型/店型判断条件	传统电商平台自营店		后台					不拜访	N
+			Brand-Exclusive 品牌专卖店												  单一条件映射直接映射：2025店型/店型判断条件	传统电商品牌专卖店		后台					不拜访	N
+			Category-Exclusive 品类专营店												  单一条件映射直接映射：2025店型/店型判断条件	传统电商平台自营店		后台					不拜访	N
+			Personal 个人C店												  单一条件映射直接映射：2025店型/店型判断条件	传统电商个人C店		后台					不拜访	N
+		Interest E-Commerce 兴趣电商	Flagship 品牌旗舰店												  单一条件映射直接映射：2025店型/店型判断条件	兴趣电商品牌旗舰店		后台					不拜访	N
+			Self-Operated 平台自营店												  单一条件映射直接映射：2025店型/店型判断条件	兴趣电商平台自营店		后台					不拜访	N
+			Brand-Exclusive 品牌专卖店												  单一条件映射直接映射：2025店型/店型判断条件	兴趣电商品牌专卖店		后台					不拜访	N
+			Category-Exclusive 品类专营店												  单一条件映射直接映射：2025店型/店型判断条件	兴趣电商平台自营店		后台					不拜访	N
+调整		Video & Others 视频号及其他	Video & Others 视频号及其他	解决”其他“过于含糊的问题。											  单一条件映射直接映射：2025店型/店型判断条件	线上电商其他		后台					不拜访	N
+新增		Factory & Company & Government Group purchase 工厂企事业团购	Online Factory & Company & Government Group purchase 线上工厂企事业团购	解决线上special channel的RTM问题。		通过线上传统电商/兴趣电商平台提供服务的工厂/企业/事业单位相关团购商							N/A		无			后台					不拜访	N
+新增		Wedding 喜礼	Online Wedding 线上喜铺			通过线上传统电商/兴趣电商平台做散装糖果，礼盒糖果专营店/客户							KA-NC		  单一条件映射直接映射：2025店型/店型判断条件	线上喜铺		后台					不拜访	N

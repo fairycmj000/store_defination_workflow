@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>门店主数据字段血缘 · 3D 数据孪生（档 1）</title>
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+    font-family: "Microsoft YaHei","PingFang SC",Arial,sans-serif; background: #0d1117; }
+  #graph { position: absolute; inset: 0; }
+  /* 标题 */
+  #title {
+    position: absolute; top: 14px; left: 16px; color: #e6edf3; z-index: 10;
+    pointer-events: none;
+  }
+  #title h1 { margin: 0; font-size: 17px; font-weight: 600; }
+  #title p { margin: 2px 0 0; font-size: 12px; color: #8b949e; }
+  /* 图例 */
+  #legend {
+    position: absolute; top: 14px; right: 16px; z-index: 10;
+    background: rgba(22,27,34,0.85); border: 1px solid #30363d; border-radius: 8px;
+    padding: 10px 14px; color: #e6edf3; font-size: 12px; line-height: 1.9;
+  }
+  #legend .row { display: flex; align-items: center; gap: 8px; }
+  #legend .dot { width: 11px; height: 11px; border-radius: 50%; flex: 0 0 auto; }
+  /* 聚焦信息面板 */
+  #info {
+    position: absolute; top: 76px; left: 16px; z-index: 10;
+    max-width: 360px; max-height: 62vh; overflow: auto;
+    background: rgba(22,27,34,0.92); border: 1px solid #30363d; border-radius: 8px;
+    padding: 12px 14px; color: #e6edf3; font-size: 12px; display: none;
+  }
+  #info .info-title { font-weight: 600; font-size: 14px; line-height: 1.5; margin-bottom: 2px; }
+  #info .info-title .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+  #info .info-group { color: #8b949e; font-size: 11px; margin-bottom: 4px; }
+  #info .info-col h4 { margin: 8px 0 3px; font-size: 11px; color: #8b949e; font-weight: 600; }
+  #info ul { list-style: none; margin: 0; padding: 0; }
+  #info li { display: flex; align-items: baseline; gap: 6px; padding: 2px 0; line-height: 1.45; }
+  #info li .chip { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+  #info li i { color: #8b949e; font-style: normal; margin-left: auto; font-size: 10.5px; text-align: right; padding-left: 8px; }
+  #info li.none { color: #6e7681; }
+  #info .info-close { margin-top: 8px; color: #6e7681; font-size: 10.5px; border-top: 1px solid #30363d; padding-top: 6px; }
+  /* 复位按钮 */
+  #reset {
+    position: absolute; bottom: 12px; right: 16px; z-index: 11;
+    background: rgba(22,27,34,0.85); border: 1px solid #30363d; border-radius: 6px;
+    color: #e6edf3; font-size: 12px; padding: 6px 12px; cursor: pointer;
+  }
+  #reset:hover { background: rgba(48,54,61,0.92); }
+  /* 操作提示 */
+  #hint {
+    position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+    color: #8b949e; font-size: 12px; z-index: 10; pointer-events: none;
+  }
+  /* 常显节点标签（DOM 投影，跟随相机） */
+  .nl {
+    position: absolute; transform: translate(-50%, -100%); text-align: center;
+    font-size: 11px; line-height: 1.35; color: #e6edf3; padding: 3px 7px; border-radius: 5px;
+    background: rgba(13,17,23,0.74); pointer-events: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.7); transition: opacity .18s ease;
+  }
+  .err { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: #f85149; font-size: 15px; }
+</style>
+</head>
+<body>
+<div id="graph"></div>
+<div id="title">
+  <h1>门店主数据字段血缘 · 3D 数据孪生</h1>
+  <p>4 层（城市总部主数据 → 输入事实 → 派生字段 → 下游消费）· 口径 2026 P3 · 来源 <code>门店主数据字段血缘图.md</code></p>
+</div>
+<div id="legend">
+  <div class="row"><span class="dot" style="background:#a855f7"></span>① 城市总部主数据 CustomerHq</div>
+  <div class="row"><span class="dot" style="background:#6366f1"></span>② 输入事实 / 观察字段</div>
+  <div class="row"><span class="dot" style="background:#10b981"></span>③ 派生 / 计算字段（门店主数据）</div>
+  <div class="row"><span class="dot" style="background:#f59e0b"></span>④ 下游消费 / 派生结果</div>
+</div>
+<div id="info"></div>
+<button id="reset">⤾ 复位全图</button>
+<div id="hint">鼠标拖拽旋转 · 滚轮缩放 · 悬停查看标签 · 点击节点聚焦上下游脉络 · 点击空白/复位键还原</div>
+
+<script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1/dist/3d-force-graph.min.js"></script>
+<script>
+(function () {
+  if (typeof ForceGraph3D === 'undefined') {
+    document.getElementById('graph').innerHTML = '<div class="err">3d-force-graph 库加载失败（需联网）。请检查网络后刷新重试。</div>';
+    return;
+  }
+
+  // 4 层分组：颜色 + 深度(z) + 节点大小
+  var GROUPS = {
+    hq:      { label: '① 城市总部主数据', color: '#a855f7', z: 0,   size: 4.6 },
+    fact:    { label: '② 输入事实',       color: '#6366f1', z: 320, size: 4.6 },
+    derived: { label: '③ 派生字段',       color: '#10b981', z: 640, size: 5.6 },
+    out:     { label: '④ 下游消费',       color: '#f59e0b', z: 960, size: 4.6 }
+  };
+
+  // 节点（30）
+  var NODES = [
+    { id: 'h1', name: '覆盖门店数\n(≥10家)', group: 'hq' },
+    { id: 'h2', name: '是否连锁 isChain×8\n(f-hq-chain-flag)', group: 'hq' },
+    { id: 'h3', name: 'KA类型 kaType\n(NKA/RKA/LKA)', group: 'hq' },
+    { id: 'h4', name: '指定客户类型\n(10值·城市总部继承)', group: 'hq' },
+    { id: 'h5', name: '城市总部RTM rtmChannel\n(f-hq-rtm-calc)', group: 'hq' },
+    { id: 'h6', name: '客户系列名\n(全国总部所属客户系列)', group: 'hq' },
+    { id: 'h7', name: '零食客户系列 snackCustomerSeries\n(很忙系/万辰系/有鸣系)', group: 'hq' },
+
+    { id: 'f1', name: '商圈环境\n(BusinessDistrict · 19值)', group: 'fact' },
+    { id: 'f2', name: '店型判断条件\n(StoreTypeCondition · 17值)', group: 'fact' },
+    { id: 'f3', name: '营业面积 · 收银机个数\n是否大宗/进口 · 营业时间>16h', group: 'fact' },
+    { id: 'f4', name: '全国总部\n指定客户类型 · KA类型(NKA/RKA/LKA)', group: 'fact' },
+    { id: 'f5', name: '城市总部是否连锁\n(≥10家)', group: 'fact' },
+    { id: 'f6', name: '是否承包制经销商虚拟门店', group: 'fact' },
+    { id: 'f7', name: '维护入口\n(公海/供销 · 糖巧/冰淇淋)', group: 'fact' },
+    { id: 'f8', name: '是否KK · 玛氏地级市 · 白名单总部', group: 'fact' },
+    { id: 'f9', name: '底表 r13p_gsv ÷ store_exist_p', group: 'fact' },
+
+    { id: 'd1', name: '渠道店型（三级渠道/店型）\nstore_channel_code', group: 'derived' },
+    { id: 'd2', name: 'RTM\nrtm_channel_code · 16值', group: 'derived' },
+    { id: 'd3', name: '覆盖模式\ncover_mode · 7值', group: 'derived' },
+    { id: 'd4', name: '门店分层\nstore_seg · 8值', group: 'derived' },
+    { id: 'd5', name: '数字化标签\n预售 / 现售 / 总仓', group: 'derived' },
+    { id: 'd6', name: '考核标签\n4值', group: 'derived' },
+    { id: 'd7', name: '段均产量\np_avg_gsv', group: 'derived' },
+    { id: 'd8', name: '产量等级\nyield_grade · 3值', group: 'derived' },
+
+    { id: 'o1', name: 'ttf 折算系数', group: 'out' },
+    { id: 'o2', name: 'RTM SIP 细分', group: 'out' },
+    { id: 'o3', name: '线路外覆盖转移\n(门槛/准入)', group: 'out' },
+    { id: 'o4', name: '分销规则 SDRS', group: 'out' },
+    { id: 'o5', name: '下游分发\n(COT/DMS/SI/冰淇淋SFA/DA SFA)', group: 'out' },
+    { id: 'o6', name: '是否连锁\n(≥10家 快照)', group: 'out' }
+  ];
+
+  // 连线（36）
+  var LINKS = [
+    // 城市总部主数据 → 内部派生 + 归属取用
+    { source: 'h1', target: 'h2', label: 'f-hq-chain-flag ≥10家判连锁' },
+    { source: 'h3', target: 'h5', label: 'f-hq-rtm-calc 现代/传统/零食按KA' },
+    { source: 'h2', target: 'h5', label: 'f-hq-rtm-calc 特殊/新模式按是否连锁' },
+    { source: 'h2', target: 'f5', label: '归属取用' },
+    { source: 'h3', target: 'f4', label: '归属取用' },
+    { source: 'h4', target: 'f4', label: '归属取用' },
+    // 输入 → 派生
+    { source: 'f1', target: 'd1', label: 'BR-SD-202/319' },
+    { source: 'f2', target: 'd1', label: 'BR-SD-202/321' },
+    { source: 'f3', target: 'd1', label: 'BR-SD-206/313' },
+    { source: 'f4', target: 'd1', label: 'BR-SD-216/307' },
+    { source: 'f5', target: 'd1', label: 'BR-SD-313' },
+    { source: 'd1', target: 'd2', label: 'BR-SD-306 店型为第一层' },
+    { source: 'f4', target: 'd2', label: 'BR-SD-305 KA类型' },
+    { source: 'f5', target: 'd2', label: 'BR-SD-112d/309/315' },
+    { source: 'f6', target: 'd2', label: 'BR-SD-303a SIP' },
+    { source: 'f7', target: 'd3', label: 'BR-SD-502 入口' },
+    { source: 'd1', target: 'd3', label: 'BR-SD-502 店型对应表' },
+    { source: 'f8', target: 'd3', label: 'BR-SD-504 白名单追加冰淇淋' },
+    { source: 'd2', target: 'd5', label: 'BR-SD-405/327 按RTM三分' },
+    { source: 'd1', target: 'd4', label: 'BR-SD-401 店型→分层' },
+    { source: 'd3', target: 'd6', label: 'BR-SD-602~605' },
+    { source: 'd1', target: 'd6', label: 'BR-SD-602/603 店型清单' },
+    { source: 'f8', target: 'd6', label: 'BR-SD-603/604 KK·地级市' },
+    { source: 'f9', target: 'd7', label: 'BR-SD-906 p_avg_gsv = r13p_gsv / store_exist_p' },
+    { source: 'd7', target: 'd8', label: 'BR-SD-409/906 阈值分级' },
+    // 派生 → 下游
+    { source: 'd4', target: 'o1', label: 'BR-SD-506' },
+    { source: 'd1', target: 'o1', label: 'BR-SD-506 店型×分层×单双人' },
+    { source: 'd2', target: 'o2', label: 'BR-SD-303a 按RTM渠道分支' },
+    { source: 'h6', target: 'o2', label: 'BR-SD-303a RKA直接取 / NKA空时取客户系列名' },
+    { source: 'h7', target: 'o2', label: 'BR-SD-303a NKA按零食客户系列' },
+    { source: 'f6', target: 'o2', label: 'BR-SD-303a FT-TT判是否承包制→取编码+名称' },
+    { source: 'd2', target: 'o4', label: '分销规则匹配' },
+    { source: 'd3', target: 'o5', label: 'BR-SD-716 下游分发' },
+    { source: 'd3', target: 'o6', label: 'BR-SD-106/329 覆盖模式∈糖巧三类统计' },
+    { source: 'd5', target: 'o3', label: 'BR-SD-511 数字化标签必填' },
+    { source: 'd8', target: 'o3', label: 'BR-SD-509 产量≥合格店(R13P段均≥60元)' }
+  ];
+
+  // 固定每层深度 z（流水线方向沿 z 轴，HQ 最前、OUT 最后）
+  NODES.forEach(function (n) { n.fz = GROUPS[n.group].z; });
+
+  // 在 graphData 之前，用原始字符串 id 建邻接表（graphData 会把 link.source/target 换成节点对象）
+  var ID = {};
+  var UP = {};    // id -> [{id, label}] 直接上游
+  var DOWN = {};  // id -> [{id, label}] 直接下游
+  var ADJ = {};   // id -> [邻接 id]（双向，用于聚焦范围计算）
+  NODES.forEach(function (n) { ID[n.id] = n; UP[n.id] = []; DOWN[n.id] = []; ADJ[n.id] = []; });
+  LINKS.forEach(function (l) {
+    DOWN[l.source].push({ id: l.target, label: l.label });
+    UP[l.target].push({ id: l.source, label: l.label });
+    ADJ[l.source].push(l.target);
+    ADJ[l.target].push(l.source);
+  });
+
+  function linkIds(l) {
+    var s = (l.source && typeof l.source === 'object') ? l.source.id : l.source;
+    var t = (l.target && typeof l.target === 'object') ? l.target.id : l.target;
+    return [s, t];
+  }
+
+  var Graph = ForceGraph3D()(document.getElementById('graph'))
+    .graphData({ nodes: NODES, links: LINKS })
+    .backgroundColor('#0d1117')
+    .nodeColor(function (n) { return GROUPS[n.group].color; })
+    .nodeVal(function (n) { return GROUPS[n.group].size; })
+    .nodeLabel(function () { return ''; })
+    .nodeOpacity(0.95)
+    .linkColor(function () { return 'rgba(175,190,210,0.9)'; })
+    .linkWidth(1.3)
+    .linkOpacity(0.7)
+    .linkLabel(function (l) { return l.label; })
+    .linkDirectionalArrowLength(5)
+    .linkDirectionalArrowRelPos(1)
+    .linkDirectionalParticles(1)
+    .linkDirectionalParticleWidth(1.5)
+    .showNavInfo(false)
+    .onNodeClick(onNodeClick)
+    .onBackgroundClick(clearFocus);
+
+  // 调力：层内铺开、跨层连线不过紧；更快收敛后冻结，保证旋转顺滑不抖动
+  Graph.d3Force('charge').strength(-170);
+  Graph.d3Force('link').distance(72);
+  Graph.d3AlphaDecay(0.05);
+  Graph.d3ReheatSimulation();
+  Graph.d3AlphaTarget(0);
+
+  // 初始视角：先给一个较近的取景，避免加载瞬间过小
+  Graph.cameraPosition({ x: 40, y: 160, z: 1080 }, { x: 0, y: 0, z: 470 });
+
+  // 布局稳定后自动取景到合适大小
+  setTimeout(function () { Graph.zoomToFit(800, 90); }, 2400);
+
+  // ---- 聚焦：点击节点，高亮其上下游脉络 ----
+  var focusId = null;
+  var scopeSet = null;
+  var FOCUS_HOP = 2;
+
+  function hopsFrom(id, maxHop) {
+    var seen = new Set([id]);
+    var frontier = [id];
+    for (var h = 0; h < maxHop; h++) {
+      var next = [];
+      frontier.forEach(function (x) {
+        ADJ[x].forEach(function (y) {
+          if (!seen.has(y)) { seen.add(y); next.push(y); }
+        });
+      });
+      frontier = next;
+    }
+    return seen;
+  }
+
+  function onNodeClick(node) {
+    if (focusId === node.id) { clearFocus(); return; }
+    focusId = node.id;
+    var inScope = hopsFrom(node.id, FOCUS_HOP);
+    scopeSet = inScope;
+
+    Graph.nodeColor(function (n) {
+      if (n.id === focusId) return '#ffffff';
+      if (inScope.has(n.id)) return GROUPS[n.group].color;
+      return 'rgba(110,118,129,0.20)';
+    });
+    Graph.nodeOpacity(function (n) {
+      if (n.id === focusId) return 1;
+      if (inScope.has(n.id)) return 0.95;
+      return 0.10;
+    });
+    Graph.nodeVal(function (n) {
+      if (n.id === focusId) return GROUPS[n.group].size * 1.9;
+      if (inScope.has(n.id)) return GROUPS[n.group].size;
+      return GROUPS[n.group].size * 0.55;
+    });
+    Graph.linkColor(function (l) {
+      var e = linkIds(l);
+      if (e[0] === focusId || e[1] === focusId) return 'rgba(255,255,255,0.85)';
+      if (inScope.has(e[0]) && inScope.has(e[1])) return 'rgba(175,190,210,0.6)';
+      return 'rgba(110,118,129,0.06)';
+    });
+    Graph.linkOpacity(function (l) {
+      var e = linkIds(l);
+      if (e[0] === focusId || e[1] === focusId) return 1;
+      if (inScope.has(e[0]) && inScope.has(e[1])) return 0.85;
+      return 0.05;
+    });
+    Graph.linkWidth(function (l) {
+      var e = linkIds(l);
+      return (e[0] === focusId || e[1] === focusId) ? 2.4 : 1;
+    });
+
+    Graph.cameraPosition({ x: node.x, y: node.y, z: node.z + 400 }, node, 600);
+    showInfo(node);
+  }
+
+  function clearFocus() {
+    if (focusId === null) return;
+    focusId = null;
+    scopeSet = null;
+    Graph.nodeColor(function (n) { return GROUPS[n.group].color; });
+    Graph.nodeOpacity(0.95);
+    Graph.nodeVal(function (n) { return GROUPS[n.group].size; });
+    Graph.linkColor(function () { return 'rgba(175,190,210,0.9)'; });
+    Graph.linkOpacity(0.7);
+    Graph.linkWidth(1.3);
+    hideInfo();
+    Graph.zoomToFit(700, 90);
+  }
+
+  function showInfo(node) {
+    var el = document.getElementById('info');
+    var g = GROUPS[node.group];
+    var nameHtml = node.name.replace(/\n/g, '<br>');
+
+    function li(list) {
+      if (!list.length) return '<li class="none">（无）</li>';
+      return list.map(function (e) {
+        var n = ID[e.id];
+        return '<li><span class="chip" style="background:' + GROUPS[n.group].color + '"></span>' +
+          '<span>' + n.name.replace(/\n/g, ' ') + '</span>' +
+          '<i>' + e.label + '</i></li>';
+      }).join('');
+    }
+
+    el.innerHTML =
+      '<div class="info-title"><span class="dot" style="background:' + g.color + '"></span>' + nameHtml + '</div>' +
+      '<div class="info-group">' + g.label + ' · ' + node.id + '</div>' +
+      '<div class="info-col"><h4>上游 · 输入来源</h4><ul>' + li(UP[node.id]) + '</ul></div>' +
+      '<div class="info-col"><h4>下游 · 去向消费</h4><ul>' + li(DOWN[node.id]) + '</ul></div>' +
+      '<div class="info-close">已聚焦 ±' + FOCUS_HOP + ' 跳脉络 · 点击空白处或复位键还原</div>';
+    el.style.display = 'block';
+  }
+
+  function hideInfo() {
+    document.getElementById('info').style.display = 'none';
+  }
+
+  // ---- 常显节点标签：DOM 投影，随相机实时定位 ----
+  var labelEls = {};
+  (function buildLabels() {
+    var layer = document.createElement('div');
+    layer.style.cssText = 'position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index:6;';
+    document.body.appendChild(layer);
+    NODES.forEach(function (n) {
+      var d = document.createElement('div');
+      d.className = 'nl';
+      d.style.border = '1px solid ' + GROUPS[n.group].color + '66';
+      d.innerHTML = n.name.replace(/\n/g, '<br>');
+      layer.appendChild(d);
+      labelEls[n.id] = d;
+    });
+  })();
+
+  function renderLabels() {
+    NODES.forEach(function (n) {
+      var p = Graph.graph2ScreenCoords(n.x, n.y, n.z);
+      var d = labelEls[n.id];
+      if (!p) { d.style.opacity = '0'; return; }
+      d.style.left = p.x + 'px';
+      d.style.top = p.y + 'px';
+      if (scopeSet) {
+        if (n.id === focusId) d.style.opacity = '1';
+        else if (scopeSet.has(n.id)) d.style.opacity = '0.95';
+        else d.style.opacity = '0.12';
+      } else {
+        d.style.opacity = '0.95';
+      }
+    });
+  }
+  function labelLoop() { renderLabels(); requestAnimationFrame(labelLoop); }
+  requestAnimationFrame(labelLoop);
+
+  document.getElementById('reset').addEventListener('click', function () {
+    if (focusId !== null) { clearFocus(); }
+    else { Graph.zoomToFit(700, 90); }
+  });
+
+  window.addEventListener('resize', function () {
+    Graph.width(window.innerWidth).height(window.innerHeight);
+  });
+})();
+</script>
+</body>
+</html>
