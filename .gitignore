@@ -9,3 +9,6 @@ knowledge-space/
 
 # GitHub 仓访问权限快照（个人生成物，不入库）
 fairycmj000-github-repo-access-*.md
+
+# Playwright MCP 浏览器验证产物（过程输出，不入库）
+.playwright-mcp/
