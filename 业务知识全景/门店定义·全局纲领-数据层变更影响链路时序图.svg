@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 880" width="1600" height="880">
+<defs>
+<marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#57606a"/></marker>
+<marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#bc4c00"/></marker>
+</defs>
+<rect width="1600" height="880" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<text x="800" y="38" font-size="20" font-weight="700" fill="#1f2328" text-anchor="middle">门店定义变更 · 数据层变更影响链路（时序）</text>
+<text x="800" y="60" font-size="12" fill="#59636e" text-anchor="middle">定义发布 → 总部取值域同步 → 门店店型重算 → 派生标签重算 → 存量重刷 → 下游同步</text>
+
+<!-- ============ 参与者（lifeline 头） ============ -->
+<!-- 1 定义变更 -->
+<rect x="30" y="76" width="160" height="64" rx="10" fill="#f6f8fa" stroke="#57606a" stroke-width="1.5"/>
+<text x="110" y="100" font-size="14" font-weight="700" fill="#1f2328" text-anchor="middle">定义变更</text>
+<text x="110" y="120" font-size="11" fill="#59636e" text-anchor="middle">2027 门店定义 PRD</text>
+<line x1="110" y1="140" x2="110" y2="800" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+<!-- 2 全国总部 -->
+<rect x="240" y="76" width="160" height="64" rx="10" fill="#f0f6fd" stroke="#0969da" stroke-width="1.5"/>
+<text x="320" y="100" font-size="14" font-weight="700" fill="#0969da" text-anchor="middle">全国总部</text>
+<text x="320" y="120" font-size="11" fill="#59636e" text-anchor="middle">KA类型 / 是否连锁 / 指定客户类型</text>
+<line x1="320" y1="140" x2="320" y2="800" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+<!-- 3 城市总部 -->
+<rect x="450" y="76" width="160" height="64" rx="10" fill="#f0f6fd" stroke="#0969da" stroke-width="1.5"/>
+<text x="530" y="100" font-size="14" font-weight="700" fill="#0969da" text-anchor="middle">城市总部</text>
+<text x="530" y="120" font-size="11" fill="#59636e" text-anchor="middle">是否连锁 / KA类型 / 渠道</text>
+<line x1="530" y1="140" x2="530" y2="800" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+<!-- 4 门店主数据（店型） -->
+<rect x="660" y="76" width="160" height="64" rx="10" fill="#fdf3ec" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="740" y="100" font-size="14" font-weight="700" fill="#bc4c00" text-anchor="middle">门店主数据</text>
+<text x="740" y="120" font-size="11" fill="#59636e" text-anchor="middle">店型判断 → 门店店型</text>
+<line x1="740" y1="140" x2="740" y2="800" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+<!-- 5 派生标签 -->
+<rect x="870" y="76" width="160" height="64" rx="10" fill="#f2faf3" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="950" y="100" font-size="14" font-weight="700" fill="#1a7f37" text-anchor="middle">派生标签</text>
+<text x="950" y="120" font-size="11" fill="#59636e" text-anchor="middle">RTM / 覆盖 / 分层 / 考核 / 销量</text>
+<line x1="950" y1="140" x2="950" y2="800" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+<!-- 6 存量重刷 -->
+<rect x="1080" y="76" width="160" height="64" rx="10" fill="#f7f1fb" stroke="#8250df" stroke-width="1.5"/>
+<text x="1160" y="100" font-size="14" font-weight="700" fill="#8250df" text-anchor="middle">存量重刷</text>
+<text x="1160" y="120" font-size="11" fill="#59636e" text-anchor="middle">历史门店按新定义重算</text>
+<line x1="1160" y1="140" x2="1160" y2="800" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+<!-- 7 下游系统 -->
+<rect x="1290" y="76" width="160" height="64" rx="10" fill="#e0f2f1" stroke="#0e7490" stroke-width="1.5"/>
+<text x="1370" y="100" font-size="14" font-weight="700" fill="#0e7490" text-anchor="middle">下游系统</text>
+<text x="1370" y="120" font-size="11" fill="#59636e" text-anchor="middle">dataengine → 11 下游接口</text>
+<line x1="1370" y1="140" x2="1370" y2="800" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+<!-- ============ 消息（时序：上 → 下） ============ -->
+<!-- 1 定义变更 → 全国总部 -->
+<line x1="190" y1="200" x2="240" y2="200" stroke="#57606a" stroke-width="2" marker-end="url(#arrow-gray)"/>
+<text x="215" y="192" font-size="12" fill="#1f2328" text-anchor="middle">发布新店型/RTM/标签定义 + 更新取值域</text>
+
+<!-- 2 全国总部 → 城市总部 -->
+<line x1="400" y1="285" x2="450" y2="285" stroke="#57606a" stroke-width="2" marker-end="url(#arrow-gray)"/>
+<text x="425" y="277" font-size="12" fill="#1f2328" text-anchor="middle">KA类型 / 是否连锁 继承同步</text>
+
+<!-- 3 城市总部 → 门店主数据 -->
+<line x1="610" y1="370" x2="660" y2="370" stroke="#57606a" stroke-width="2" marker-end="url(#arrow-gray)"/>
+<text x="635" y="362" font-size="12" fill="#1f2328" text-anchor="middle">是否连锁 / 指定客户类型 参与店型判断</text>
+
+<!-- 4 门店主数据 自反：店型重算 -->
+<path d="M740,450 h62 v30 h-62" fill="none" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrow-orange)"/>
+<text x="812" y="470" font-size="12" fill="#bc4c00">店型判断条件 → 门店店型重算（80 → 64）</text>
+
+<!-- 5 门店主数据 → 派生标签 -->
+<line x1="820" y1="535" x2="870" y2="535" stroke="#57606a" stroke-width="2" marker-end="url(#arrow-gray)"/>
+<text x="845" y="527" font-size="12" fill="#1f2328" text-anchor="middle">门店店型 扇出触发派生标签重算</text>
+
+<!-- 6 派生标签 → 存量重刷 -->
+<line x1="1030" y1="620" x2="1080" y2="620" stroke="#57606a" stroke-width="2" marker-end="url(#arrow-gray)"/>
+<text x="1055" y="612" font-size="12" fill="#1f2328" text-anchor="middle">按新定义重刷存量门店数据</text>
+
+<!-- 7 存量重刷 → 下游系统 -->
+<line x1="1240" y1="705" x2="1290" y2="705" stroke="#57606a" stroke-width="2" marker-end="url(#arrow-gray)"/>
+<text x="1265" y="697" font-size="12" fill="#1f2328" text-anchor="middle">dataengine 同步到下游接口</text>
+
+<!-- ============ 底部说明 ============ -->
+<text x="800" y="832" font-size="12" fill="#59636e" text-anchor="middle">定义变更的「取值域变更」作用于全国总部 / 城市总部主数据，「计算逻辑变更」作用于门店店型决策树；店型是核心枢纽，向下扇出触发派生标签重算。</text>
+<text x="800" y="852" font-size="12" fill="#59636e" text-anchor="middle">糖巧 / 冰淇淋 / DA 的定义适配差异（冰淇淋 WS 独立定义见 §2.2、DA 独立链路见 §3.1）不在本链路的字段级时序内，见对应章节。</text>
+
+</g>
+</svg>
