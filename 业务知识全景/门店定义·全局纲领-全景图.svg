@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#57606a"/></marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<!-- 权威源（仓库外） -->
+<rect x="120" y="58" width="1360" height="124" rx="16" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.5" stroke-dasharray="8 7"/>
+<text x="140" y="48" font-size="15" fill="#57606a">权威源（仓库外）</text>
+<rect x="160" y="82" width="400" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="360" y="116" font-size="20" font-weight="700" fill="#1f2328" text-anchor="middle">knowledge-space 知识库</text>
+<text x="360" y="144" font-size="14" fill="#59636e" text-anchor="middle">字段字典 · 判定树 · 规则语料</text>
+<rect x="600" y="82" width="400" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="800" y="116" font-size="20" font-weight="700" fill="#1f2328" text-anchor="middle">项目实战经验总结</text>
+<text x="800" y="144" font-size="14" fill="#59636e" text-anchor="middle">项目管理经验 · 避坑指南</text>
+<rect x="1040" y="82" width="400" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="1240" y="116" font-size="20" font-weight="700" fill="#1f2328" text-anchor="middle">最新需求</text>
+<text x="1240" y="144" font-size="14" fill="#59636e" text-anchor="middle">BRD Excel + 同步会纪要</text>
+
+<!-- 权威源 → 章节（虚线，颜色随目标章节） -->
+<line x1="360" y1="162" x2="176" y2="240" stroke="#0969da" stroke-width="2" stroke-dasharray="7 6"/>
+<line x1="360" y1="162" x2="488" y2="240" stroke="#bc4c00" stroke-width="2" stroke-dasharray="7 6"/>
+<line x1="800" y1="162" x2="1084" y2="240" stroke="#8250df" stroke-width="2" stroke-dasharray="7 6"/>
+<line x1="1240" y1="162" x2="1140" y2="240" stroke="#8250df" stroke-width="2" stroke-dasharray="7 6"/>
+
+<!-- 章节流转（实线箭头） -->
+<line x1="312" y1="400" x2="346" y2="400" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="624" y1="400" x2="658" y2="400" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="936" y1="400" x2="970" y2="400" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="1248" y1="400" x2="1282" y2="400" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+<!-- 第一章 概述 -->
+<rect x="40" y="240" width="272" height="320" rx="14" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+<text x="176" y="268" font-size="14" fill="#57606a" text-anchor="middle">第一章</text>
+<text x="176" y="292" font-size="20" font-weight="700" fill="#0969da" text-anchor="middle">概述</text>
+<line x1="58" y1="306" x2="294" y2="306" stroke="#d0d7de" stroke-width="1"/>
+<rect x="54" y="312" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="176" y="337" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">门店定义</text>
+<text x="176" y="355" font-size="12" fill="#59636e" text-anchor="middle">= 渠道店型 + RTM</text>
+<rect x="54" y="374" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="176" y="399" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">三大主题对象</text>
+<text x="176" y="417" font-size="12" fill="#59636e" text-anchor="middle">渠道店型 · RTM · 标签</text>
+<rect x="54" y="436" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="176" y="461" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">变更与演进规律</text>
+<text x="176" y="479" font-size="12" fill="#59636e" text-anchor="middle">年度演进 · 存量重刷</text>
+
+<!-- 第二章 具体业务定义与系统逻辑 -->
+<rect x="352" y="240" width="272" height="320" rx="14" fill="#ffffff" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="488" y="268" font-size="14" fill="#57606a" text-anchor="middle">第二章</text>
+<text x="488" y="292" font-size="20" font-weight="700" fill="#bc4c00" text-anchor="middle">业务定义与系统逻辑</text>
+<line x1="370" y1="306" x2="606" y2="306" stroke="#d0d7de" stroke-width="1"/>
+<rect x="366" y="312" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="488" y="337" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">渠道店型</text>
+<text x="488" y="355" font-size="12" fill="#59636e" text-anchor="middle">一级渠道 → 二三级店型</text>
+<rect x="366" y="374" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="488" y="399" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">RTM</text>
+<text x="488" y="417" font-size="12" fill="#59636e" text-anchor="middle">含城市总部连带</text>
+
+<!-- 第三章 派生主数据字段：标签 -->
+<rect x="664" y="240" width="272" height="320" rx="14" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="800" y="268" font-size="14" fill="#57606a" text-anchor="middle">第三章</text>
+<text x="800" y="292" font-size="20" font-weight="700" fill="#1a7f37" text-anchor="middle">派生字段：标签</text>
+<line x1="682" y1="306" x2="918" y2="306" stroke="#d0d7de" stroke-width="1"/>
+<rect x="678" y="312" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="800" y="337" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">主要标签</text>
+<text x="800" y="355" font-size="12" fill="#59636e" text-anchor="middle">→ 数字化标签 / 覆盖模式</text>
+<rect x="678" y="374" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="800" y="399" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">其他业务场景标签</text>
+<text x="800" y="417" font-size="12" fill="#59636e" text-anchor="middle">服务各类业务场景</text>
+
+<!-- 第四章 项目实践 -->
+<rect x="976" y="240" width="272" height="320" rx="14" fill="#ffffff" stroke="#8250df" stroke-width="1.5"/>
+<text x="1112" y="268" font-size="14" fill="#57606a" text-anchor="middle">第四章</text>
+<text x="1112" y="292" font-size="20" font-weight="700" fill="#8250df" text-anchor="middle">项目实践</text>
+<line x1="994" y1="306" x2="1230" y2="306" stroke="#d0d7de" stroke-width="1"/>
+<rect x="990" y="312" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="1112" y="337" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">数据层面影响</text>
+<text x="1112" y="355" font-size="12" fill="#59636e" text-anchor="middle">糖巧 / 冰淇淋 / DA 适配</text>
+<rect x="990" y="374" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="1112" y="399" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">业务场景适配</text>
+<text x="1112" y="417" font-size="12" fill="#59636e" text-anchor="middle">标签与业务范围同步</text>
+<rect x="990" y="436" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="1112" y="461" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">应用端功能适配</text>
+<text x="1112" y="479" font-size="12" fill="#59636e" text-anchor="middle">字段 → 接口 → 应用端</text>
+<rect x="990" y="498" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="1112" y="523" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">下游影响评估</text>
+<text x="1112" y="541" font-size="12" fill="#59636e" text-anchor="middle">四层影响评估</text>
+
+<!-- 附录 相关文档汇总 -->
+<rect x="1288" y="240" width="272" height="320" rx="14" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+<text x="1424" y="268" font-size="14" fill="#57606a" text-anchor="middle">附录</text>
+<text x="1424" y="292" font-size="20" font-weight="700" fill="#57606a" text-anchor="middle">相关文档汇总</text>
+<line x1="1306" y1="306" x2="1542" y2="306" stroke="#d0d7de" stroke-width="1"/>
+<rect x="1302" y="312" width="244" height="50" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<text x="1424" y="337" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">相关文档汇总</text>
+<text x="1424" y="355" font-size="12" fill="#59636e" text-anchor="middle">权威源 · 工作区 · 需求源</text>
+
+</g>
+</svg>

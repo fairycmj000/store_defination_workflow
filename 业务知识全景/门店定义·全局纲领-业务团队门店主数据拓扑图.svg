@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1010" width="1600" height="1010">
+<defs>
+<marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#0969da"/></marker>
+<marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#bc4c00"/></marker>
+</defs>
+<rect width="1600" height="1010" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<text x="60" y="46" font-size="21" font-weight="700" fill="#1f2328">业务团队 ↔ 门店主数据 · 应用层 &amp; 主数据字段层 &amp; 数据范围拓扑</text>
+<text x="60" y="74" font-size="13" fill="#59636e">谁 → 端/应用 → 入口 → 门店主数据（主数据字段层：公共数据资产 + 人店关系 + 管理权限）；底部为数据范围层</text>
+
+<!-- ============ 业务执行层 · 企微端 ============ -->
+<rect x="40" y="96" width="860" height="430" rx="16" fill="#f6f8fa" stroke="#0969da" stroke-width="1.5"/>
+<text x="60" y="88" font-size="15" fill="#0969da">业务执行层人员 · 企微端（SFA）</text>
+
+<rect x="60" y="130" width="240" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="180" y="168" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">糖巧业务团队（MW）</text>
+<text x="180" y="192" font-size="12" fill="#59636e" text-anchor="middle">品类：糖 · 巧克力 · 新收购薯片&amp;谷物</text>
+
+<rect x="60" y="230" width="240" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="180" y="268" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">冰淇淋业务团队（IC）</text>
+<text x="180" y="292" font-size="12" fill="#59636e" text-anchor="middle">品类：冰淇淋</text>
+
+<rect x="60" y="330" width="240" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="180" y="365" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">DA 团队</text>
+<text x="180" y="389" font-size="12" fill="#59636e" text-anchor="middle">Direct Account · 经销商下属</text>
+
+<rect x="360" y="130" width="200" height="180" rx="12" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+<text x="460" y="205" font-size="17" font-weight="700" fill="#0969da" text-anchor="middle">COT+ SFA</text>
+<text x="460" y="232" font-size="12" fill="#59636e" text-anchor="middle">企微端应用</text>
+<text x="460" y="256" font-size="12" fill="#59636e" text-anchor="middle">糖巧 &amp; 冰淇淋 共用</text>
+
+<rect x="360" y="330" width="200" height="80" rx="12" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+<text x="460" y="365" font-size="17" font-weight="700" fill="#0969da" text-anchor="middle">DA SFA</text>
+<text x="460" y="389" font-size="12" fill="#59636e" text-anchor="middle">企微端应用</text>
+
+<rect x="620" y="130" width="260" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="750" y="168" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">门店管理</text>
+<text x="750" y="192" font-size="12" fill="#59636e" text-anchor="middle">（两团队共用）</text>
+
+<rect x="620" y="230" width="260" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="750" y="268" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">线路外门店</text>
+<text x="750" y="292" font-size="12" fill="#59636e" text-anchor="middle">（仅糖巧开放）</text>
+
+<rect x="620" y="330" width="260" height="80" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="750" y="365" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">ERP 门店补全</text>
+<text x="750" y="389" font-size="12" fill="#59636e" text-anchor="middle">→ mongo 门店数据</text>
+
+<line x1="300" y1="170" x2="360" y2="190" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="300" y1="270" x2="360" y2="250" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="300" y1="370" x2="360" y2="370" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="560" y1="170" x2="620" y2="170" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="560" y1="270" x2="620" y2="270" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="560" y1="370" x2="620" y2="370" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+<!-- ============ 管理层 · PC 端 ============ -->
+<rect x="40" y="556" width="860" height="110" rx="16" fill="#fff8e5" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="60" y="548" font-size="15" fill="#bc4c00">管理层人员 · PC 端（主要用户：玛氏 NSO）</text>
+
+<rect x="60" y="576" width="240" height="70" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="180" y="608" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">管理层人员</text>
+<text x="180" y="630" font-size="12" fill="#59636e" text-anchor="middle">主要用户：玛氏 NSO</text>
+
+<rect x="360" y="576" width="200" height="70" rx="12" fill="#fff8e5" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="460" y="608" font-size="16" font-weight="700" fill="#bc4c00" text-anchor="middle">公海门店 portal</text>
+<text x="460" y="630" font-size="12" fill="#59636e" text-anchor="middle">PC 端应用</text>
+
+<rect x="620" y="576" width="260" height="70" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="750" y="608" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">门店管理</text>
+<text x="750" y="630" font-size="12" fill="#59636e" text-anchor="middle">极个别线上平台渠道门店</text>
+
+<line x1="300" y1="611" x2="360" y2="611" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+<line x1="560" y1="611" x2="620" y2="611" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+<!-- ============ 门店主数据 · 主数据字段层 ============ -->
+<rect x="980" y="96" width="560" height="594" rx="16" fill="#dafbe1" stroke="#1a7f37" stroke-width="2"/>
+<text x="1000" y="128" font-size="16" font-weight="700" fill="#1a7f37">门店主数据 · 主数据字段层</text>
+<text x="1000" y="148" font-size="12" fill="#59636e">玛氏公共数据资产 · 一条门店数据供糖巧 + 冰淇淋共同使用</text>
+
+<rect x="1000" y="164" width="520" height="100" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="1020" y="192" font-size="15" font-weight="700" fill="#1f2328">门店主数据（公共数据资产）</text>
+<text x="1020" y="218" font-size="13" fill="#59636e">糖巧 &amp; 冰淇淋建的店</text>
+<text x="1020" y="242" font-size="13" fill="#59636e">一条门店数据，两团队共同使用</text>
+
+<rect x="1000" y="280" width="520" height="150" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="1020" y="308" font-size="15" font-weight="700" fill="#1f2328">人店关系（各自一套）</text>
+<rect x="1020" y="322" width="230" height="74" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+<text x="1135" y="354" font-size="14" font-weight="700" fill="#0969da" text-anchor="middle">糖巧人店关系</text>
+<text x="1135" y="378" font-size="11" fill="#59636e" text-anchor="middle">糖巧业务场景负责人</text>
+<rect x="1270" y="322" width="230" height="74" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+<text x="1385" y="354" font-size="14" font-weight="700" fill="#0969da" text-anchor="middle">冰淇淋人店关系</text>
+<text x="1385" y="378" font-size="11" fill="#59636e" text-anchor="middle">冰淇淋业务场景负责人</text>
+<text x="1020" y="416" font-size="11" fill="#59636e">各自一套，用于区分各自业务场景中门店主数据的负责人</text>
+
+<rect x="1000" y="446" width="520" height="70" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="1020" y="472" font-size="15" font-weight="700" fill="#1f2328">管理权限归属（系统层面）</text>
+<text x="1020" y="498" font-size="13" fill="#59636e">初始 = 创建团队：谁建的门店，谁享有初始管理权限</text>
+
+<rect x="1000" y="530" width="520" height="140" rx="10" fill="#fff8e5" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="1020" y="556" font-size="15" font-weight="700" fill="#bc4c00">管理权限转移（关店场景）</text>
+<text x="1020" y="580" font-size="13" fill="#1f2328">糖巧业务员发起关店 → 门店不直接无效</text>
+<text x="1020" y="602" font-size="13" fill="#1f2328">→ 先判断是否还有冰淇淋业务在开展（是否有冰淇淋人员负责）</text>
+<text x="1020" y="624" font-size="13" font-weight="700" fill="#1f2328">有 → 管理权限转移给冰淇淋　·　无 → 门店无效</text>
+<text x="1020" y="648" font-size="11" fill="#59636e">（冰淇淋创建的门店同理对称）</text>
+
+<line x1="880" y1="170" x2="980" y2="200" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="880" y1="270" x2="980" y2="320" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="880" y1="370" x2="980" y2="420" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="880" y1="611" x2="980" y2="580" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+<!-- ============ 数据范围 ============ -->
+<rect x="40" y="706" width="1510" height="270" rx="16" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="70" y="740" font-size="15" font-weight="700" fill="#1f2328">数据范围层面（哪些门店可建 / 可见）</text>
+
+<rect x="70" y="758" width="460" height="190" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="90" y="790" font-size="15" font-weight="700" fill="#0969da">① 线路外门店</text>
+<text x="90" y="820" font-size="13" fill="#59636e">仅糖巧业务团队</text>
+<text x="90" y="848" font-size="13" fill="#1f2328">用于门店冲击销量</text>
+<text x="90" y="876" font-size="13" fill="#1f2328">仅部分 RTM 的门店可建店</text>
+
+<rect x="560" y="758" width="470" height="190" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="580" y="790" font-size="15" font-weight="700" fill="#0969da">② 门店管理入口</text>
+<text x="580" y="820" font-size="13" fill="#1f2328">可见标准门店定义中的大部分线下渠道门店</text>
+<text x="580" y="848" font-size="13" fill="#1f2328">极个别线上平台渠道门店</text>
+<text x="580" y="876" font-size="13" fill="#1f2328">仅管理层（NSO）在 PC 端【公海门店 portal】维护</text>
+
+<rect x="1060" y="758" width="460" height="190" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="1080" y="790" font-size="15" font-weight="700" fill="#bc4c00">③ 冰淇淋主要渠道（WS + MT）</text>
+<text x="1080" y="820" font-size="13" fill="#1f2328">WS 批发 + MT 现代，门店数量几乎各占一半</text>
+<text x="1080" y="848" font-size="13" fill="#1f2328">WS 批发店型有冰淇淋团队特殊要求</text>
+<text x="1080" y="876" font-size="13" fill="#1f2328">最新 WS 店型 2026 年底单独定义更新</text>
+<text x="1080" y="904" font-size="12" fill="#59636e">（项目 26158 Y27 冰淇淋 COT 系统升级）</text>
+
+</g>
+</svg>

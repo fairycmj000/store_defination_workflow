@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#57606a"/></marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<!-- 主流程：RTM → 城市总部 → 渠道店型（向下实线） -->
+<line x1="800" y1="260" x2="800" y2="394" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="800" y1="510" x2="800" y2="644" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+<!-- 反馈回路（右侧虚线，回城市总部与 RTM） -->
+<path d="M1060,705 L1240,705 L1240,205 L1066,205" fill="none" stroke="#57606a" stroke-width="2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<line x1="1240" y1="455" x2="1066" y2="455" stroke="#57606a" stroke-width="2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+
+<!-- 阶段标注 -->
+<text x="820" y="333" font-size="13" fill="#59636e">战略解码 · 本地适配</text>
+<text x="820" y="583" font-size="13" fill="#59636e">资源调度 · 执行督导</text>
+
+<!-- 反馈标注 -->
+<text x="1265" y="443" font-size="14" fill="#59636e">一线店型数据 · 覆盖效率</text>
+<text x="1265" y="465" font-size="14" fill="#59636e">执行质量 → 反馈</text>
+
+<!-- RTM -->
+<rect x="540" y="150" width="520" height="110" rx="14" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+<text x="800" y="186" font-size="21" font-weight="700" fill="#0969da" text-anchor="middle">RTM（市场通路战略）</text>
+<text x="800" y="214" font-size="13" fill="#59636e" text-anchor="middle">定义：渠道架构 · 覆盖模式 · 分销伙伴类型 · 成本/控制/覆盖平衡</text>
+
+<!-- 城市总部 -->
+<rect x="540" y="400" width="520" height="110" rx="14" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="800" y="436" font-size="21" font-weight="700" fill="#1a7f37" text-anchor="middle">城市总部（区域管理中枢/适配器）</text>
+<text x="800" y="466" font-size="13" fill="#59636e" text-anchor="middle">动作：本地店型盘点与分级 · RTM 模式选择 · 资源分配</text>
+<text x="800" y="488" font-size="13" fill="#59636e" text-anchor="middle">经销商 / DSD 管理 · 执行督导</text>
+
+<!-- 渠道店型 -->
+<rect x="540" y="650" width="520" height="110" rx="14" fill="#ffffff" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="800" y="686" font-size="21" font-weight="700" fill="#bc4c00" text-anchor="middle">渠道店型（终端执行单元）</text>
+<text x="800" y="714" font-size="13" fill="#59636e" text-anchor="middle">对象：大卖场 · 超市 · CVS · 夫妻店 · 杂货店等</text>
+
+</g>
+</svg>

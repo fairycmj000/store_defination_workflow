@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 960" width="1560" height="960">
+<defs>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#0969da"/></marker>
+<marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#bc4c00"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1a7f37"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#8250df"/></marker>
+</defs>
+<rect width="1560" height="960" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<!-- ============ 域分组框 ============ -->
+<rect x="30" y="60" width="330" height="220" rx="14" fill="#f0f6fd" stroke="#0969da" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="195" y="46" font-size="15" fill="#0969da" text-anchor="middle" font-weight="700">总部连带字段（全国总部 / 城市总部）</text>
+<rect x="30" y="320" width="330" height="580" rx="14" fill="#fdf3ec" stroke="#bc4c00" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="195" y="306" font-size="15" fill="#bc4c00" text-anchor="middle" font-weight="700">门店基础字段（门店侧）</text>
+<rect x="420" y="60" width="640" height="840" rx="14" fill="#f2faf3" stroke="#1a7f37" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="740" y="46" font-size="15" fill="#1a7f37" text-anchor="middle" font-weight="700">店型计算（嵌套决策树）</text>
+<rect x="1120" y="60" width="420" height="840" rx="14" fill="#f7f1fb" stroke="#8250df" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="1330" y="46" font-size="15" fill="#8250df" text-anchor="middle" font-weight="700">结果（三级渠道级联）</text>
+
+<!-- ============ 连线 ============ -->
+<!-- 总部连带字段 → 店型计算 -->
+<polyline points="360,180 470,320" fill="none" stroke="#0969da" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<!-- 门店基础字段 → 店型计算 -->
+<polyline points="360,610 470,540" fill="none" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrow-orange)"/>
+
+<!-- 门店渠道（根） → 10 分支（spine + 横支） -->
+<polyline points="740,202 740,690" fill="none" stroke="#1a7f37" stroke-width="2"/>
+<polyline points="740,297 715,297" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,297 755,297" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,392 715,392" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,392 755,392" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,487 715,487" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,487 755,487" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,582 715,582" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,582 755,582" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,677 715,677" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<polyline points="740,677 755,677" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+<!-- 店型计算 → 三级渠道（直接结果） -->
+<polyline points="1060,480 1160,175" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<text x="1090" y="300" font-size="11" fill="#57606a">计算输出（推到三级）</text>
+<!-- 三级 → 二级 → 一级（级联带出） -->
+<polyline points="1330,210 1330,300" fill="none" stroke="#8250df" stroke-width="2" marker-end="url(#arrow-purple)"/>
+<polyline points="1330,370 1330,460" fill="none" stroke="#8250df" stroke-width="2" marker-end="url(#arrow-purple)"/>
+<text x="1342" y="262" font-size="11" fill="#8250df">级联带出</text>
+<text x="1342" y="422" font-size="11" fill="#8250df">级联带出</text>
+
+<!-- ============ 总部连带字段 ============ -->
+<rect x="55" y="100" width="280" height="60" rx="8" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+<text x="71" y="125" font-size="13" font-weight="700" fill="#0969da">指定客户类型</text>
+<text x="71" y="146" font-size="11" fill="#59636e">全国总部 · 10 值（含校园/餐饮/高端便利店等）</text>
+<rect x="55" y="180" width="280" height="60" rx="8" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+<text x="71" y="205" font-size="13" font-weight="700" fill="#0969da">是否连锁</text>
+<text x="71" y="226" font-size="11" fill="#59636e">城市总部 · 0 / 1</text>
+
+<!-- ============ 门店基础字段（11 个） ============ -->
+<g font-size="12" fill="#1f2328">
+<text x="52" y="352" font-size="13" font-weight="700" fill="#bc4c00">条件字段（11 个）</text>
+<text x="52" y="382">商圈环境（19 值）</text>
+<text x="52" y="412">门店特征 / 店型判断条件（18 值）</text>
+<text x="52" y="442">门店营业面积（6 值）</text>
+<text x="52" y="472">收银机个数（4 值）</text>
+<text x="52" y="502">是否生鲜主导（0/1）</text>
+<text x="52" y="532">是否大宗售卖（是/否）</text>
+<text x="52" y="562">进口产品 SKU 超 40（0/1）</text>
+<text x="52" y="592">营业时间超 16 小时（0/1）</text>
+<text x="52" y="622">传统渠道店型（3 值）</text>
+<text x="52" y="652">O2O 店型（15 值）</text>
+<text x="52" y="682">批发渠道类型选择（7 值）</text>
+</g>
+
+<!-- ============ 店型计算：门店渠道（根） + 10 分支 ============ -->
+<rect x="470" y="110" width="540" height="92" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="2"/>
+<text x="740" y="136" font-size="16" font-weight="700" fill="#1a7f37" text-anchor="middle">门店渠道（根字段）</text>
+<text x="740" y="160" font-size="12" fill="#1f2328" text-anchor="middle">10 值：MT 现代渠道 · TT 传统渠道 · WS 批发渠道 · Special 特殊渠道 · Seeding 种子渠道</text>
+<text x="740" y="179" font-size="12" fill="#1f2328" text-anchor="middle">NM 新模式 · Snacking 零食渠道 · Bulk 散装联营 · EOM 小镇青年 · Online 线上平台渠道</text>
+
+<rect x="475" y="257" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="595" y="280" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">MT 现代渠道</text>
+<text x="595" y="302" font-size="11" fill="#59636e" text-anchor="middle">指定客户类型·生鲜·大宗·进口·面积</text>
+<text x="595" y="318" font-size="11" fill="#59636e" text-anchor="middle">·收银机·营业时间·是否连锁</text>
+<rect x="755" y="257" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="875" y="280" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">NM 新模式</text>
+<text x="875" y="302" font-size="11" fill="#59636e" text-anchor="middle">商圈环境·门店特征·指定客户类型</text>
+<text x="875" y="318" font-size="11" fill="#59636e" text-anchor="middle">·是否连锁·营业面积</text>
+
+<rect x="475" y="352" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="595" y="375" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">TT 传统渠道</text>
+<text x="595" y="397" font-size="11" fill="#59636e" text-anchor="middle">同 MT + 传统渠道店型</text>
+<rect x="755" y="352" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="875" y="375" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">Snacking 零食渠道</text>
+<text x="875" y="397" font-size="11" fill="#59636e" text-anchor="middle">指定客户类型 · 是否连锁</text>
+
+<rect x="475" y="447" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="595" y="470" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">WS 批发渠道</text>
+<text x="595" y="492" font-size="11" fill="#59636e" text-anchor="middle">批发渠道类型选择</text>
+<rect x="755" y="447" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="875" y="470" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">Bulk 散装联营</text>
+<text x="875" y="492" font-size="11" fill="#59636e" text-anchor="middle">—（直接定位，无判断字段）</text>
+
+<rect x="475" y="542" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="595" y="565" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">Special 特殊渠道</text>
+<text x="595" y="587" font-size="11" fill="#59636e" text-anchor="middle">商圈环境·门店特征·指定客户类型</text>
+<text x="595" y="603" font-size="11" fill="#59636e" text-anchor="middle">·是否连锁·营业面积</text>
+<rect x="755" y="542" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="875" y="565" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">EOM 小镇青年</text>
+<text x="875" y="587" font-size="11" fill="#59636e" text-anchor="middle">门店特征（= 小镇青年）</text>
+
+<rect x="475" y="637" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="595" y="660" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">Seeding 种子渠道</text>
+<text x="595" y="682" font-size="11" fill="#59636e" text-anchor="middle">商圈环境·门店特征·指定客户类型</text>
+<text x="595" y="698" font-size="11" fill="#59636e" text-anchor="middle">·是否连锁·营业面积</text>
+<rect x="755" y="637" width="240" height="80" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="875" y="660" font-size="13" font-weight="700" fill="#1a7f37" text-anchor="middle">Online 线上平台渠道</text>
+<text x="875" y="682" font-size="11" fill="#59636e" text-anchor="middle">O2O店型·指定客户类型·是否连锁</text>
+
+<!-- ============ 结果（三级渠道级联） ============ -->
+<rect x="1160" y="140" width="340" height="70" rx="8" fill="#ffffff" stroke="#8250df" stroke-width="1.5"/>
+<text x="1330" y="168" font-size="14" font-weight="700" fill="#8250df" text-anchor="middle">三级渠道（81 值 · 三级店型）</text>
+<text x="1330" y="190" font-size="11" fill="#59636e" text-anchor="middle">店型结果直接输出（按定义推到三级）</text>
+<rect x="1160" y="300" width="340" height="70" rx="8" fill="#ffffff" stroke="#8250df" stroke-width="1.5"/>
+<text x="1330" y="328" font-size="14" font-weight="700" fill="#8250df" text-anchor="middle">二级渠道（47 值）</text>
+<text x="1330" y="350" font-size="11" fill="#59636e" text-anchor="middle">Hyper · Super · CVS · 校园店 等</text>
+<rect x="1160" y="460" width="340" height="70" rx="8" fill="#ffffff" stroke="#8250df" stroke-width="1.5"/>
+<text x="1330" y="488" font-size="14" font-weight="700" fill="#8250df" text-anchor="middle">一级渠道（10 值）</text>
+<text x="1330" y="510" font-size="11" fill="#59636e" text-anchor="middle">MT · TT · WS · Special · Seeding · NM · Snacking · Bulk · EOM · Online</text>
+
+<!-- ============ 图例 ============ -->
+<g font-size="12" fill="#57606a">
+<rect x="30" y="925" width="16" height="16" rx="4" fill="#f0f6fd" stroke="#0969da"/>
+<text x="52" y="938">总部连带字段</text>
+<rect x="150" y="925" width="16" height="16" rx="4" fill="#fdf3ec" stroke="#bc4c00"/>
+<text x="172" y="938">门店基础字段</text>
+<rect x="270" y="925" width="16" height="16" rx="4" fill="#f2faf3" stroke="#1a7f37"/>
+<text x="292" y="938">店型计算</text>
+<rect x="380" y="925" width="16" height="16" rx="4" fill="#f7f1fb" stroke="#8250df"/>
+<text x="402" y="938">结果（三级渠道）</text>
+<line x1="520" y1="933" x2="550" y2="933" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow-green)"/>
+<text x="558" y="938">字段 → 计算 → 结果</text>
+</g>
+
+</g>
+</svg>

@@ -12,3 +12,7 @@ fairycmj000-github-repo-access-*.md
 
 # Playwright MCP 浏览器验证产物（过程输出，不入库）
 .playwright-mcp/
+
+# Python 字节码缓存（自动生成，不入库）
+__pycache__/
+*.pyc

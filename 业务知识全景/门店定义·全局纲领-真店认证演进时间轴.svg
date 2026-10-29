@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 900" width="1180" height="900">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#0969da"/></marker>
+</defs>
+<rect width="1180" height="900" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<text x="90" y="44" font-size="20" font-weight="700" fill="#1f2328">真店提升 · Phase I–V 迭代时间轴</text>
+<text x="90" y="70" font-size="13" fill="#59636e">门店数据真实性 / 唯一性的演进（高德 POI 认证 + 门店判重）· 自上而下为迭代顺序</text>
+
+<!-- 时间轴主线 -->
+<line x1="90" y1="190" x2="90" y2="832" stroke="#0969da" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+<!-- ============ Phase I ============ -->
+<circle cx="90" cy="190" r="7" fill="#0969da" stroke="#ffffff" stroke-width="2.5"/>
+<rect x="150" y="128" width="990" height="124" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<rect x="170" y="140" width="76" height="26" rx="13" fill="#ddf4ff"/>
+<text x="208" y="157" font-size="13" font-weight="700" fill="#0969da" text-anchor="middle">Phase I</text>
+<text x="264" y="161" font-size="16" font-weight="700" fill="#1f2328">门店地址规范 &amp; 地址判重</text>
+<circle cx="184" cy="186" r="2.5" fill="#0969da"/>
+<text x="196" y="190" font-size="13" fill="#59636e">文本地址规范化（可报备，大店主管审批 / 小店直接建店）</text>
+<circle cx="184" cy="214" r="2.5" fill="#0969da"/>
+<text x="196" y="218" font-size="13" fill="#59636e">GPS 判重 + 文本地址判重（GPS 查重 ≤10 家）</text>
+
+<!-- ============ Phase II ============ -->
+<circle cx="90" cy="354" r="7" fill="#0969da" stroke="#ffffff" stroke-width="2.5"/>
+<rect x="150" y="292" width="990" height="124" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<rect x="170" y="304" width="76" height="26" rx="13" fill="#ddf4ff"/>
+<text x="208" y="321" font-size="13" font-weight="700" fill="#0969da" text-anchor="middle">Phase II</text>
+<text x="264" y="325" font-size="16" font-weight="700" fill="#1f2328">门店真实性认证</text>
+<circle cx="184" cy="350" r="2.5" fill="#0969da"/>
+<text x="196" y="354" font-size="13" fill="#59636e">随访 POI 绑定认证 + POI 判重（POI 不能重复绑定门店）</text>
+<circle cx="184" cy="378" r="2.5" fill="#0969da"/>
+<text x="196" y="382" font-size="13" fill="#59636e">业务员未 POI 认证的门店 → 主管协访认证</text>
+
+<!-- ============ Phase III ============ -->
+<circle cx="90" cy="532" r="7" fill="#0969da" stroke="#ffffff" stroke-width="2.5"/>
+<rect x="150" y="456" width="990" height="152" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<rect x="170" y="468" width="80" height="26" rx="13" fill="#ddf4ff"/>
+<text x="210" y="485" font-size="13" font-weight="700" fill="#0969da" text-anchor="middle">Phase III</text>
+<text x="270" y="489" font-size="16" font-weight="700" fill="#1f2328">门店判重升级</text>
+<circle cx="184" cy="514" r="2.5" fill="#0969da"/>
+<text x="196" y="518" font-size="13" fill="#59636e">新建 / 修改门店增加 POI 判重</text>
+<circle cx="184" cy="542" r="2.5" fill="#0969da"/>
+<text x="196" y="546" font-size="13" fill="#59636e">GPS 不允许重复（10 家 → 1 家都不允许）</text>
+<circle cx="184" cy="570" r="2.5" fill="#0969da"/>
+<text x="196" y="574" font-size="13" fill="#59636e">增加认证解绑（补偿措施）</text>
+
+<!-- ============ Phase IV ============ -->
+<circle cx="90" cy="696" r="7" fill="#0969da" stroke="#ffffff" stroke-width="2.5"/>
+<rect x="150" y="648" width="990" height="96" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<rect x="170" y="660" width="78" height="26" rx="13" fill="#ddf4ff"/>
+<text x="209" y="677" font-size="13" font-weight="700" fill="#0969da" text-anchor="middle">Phase IV</text>
+<text x="266" y="681" font-size="16" font-weight="700" fill="#1f2328">POI 反写主数据逻辑修改</text>
+<circle cx="184" cy="706" r="2.5" fill="#0969da"/>
+<text x="196" y="710" font-size="13" fill="#59636e">区分 KA / 非 KA：KA 仅反写详细地址，非 KA 反写门店名称 + 详细地址</text>
+
+<!-- ============ Phase V ============ -->
+<circle cx="90" cy="832" r="7" fill="#0969da" stroke="#ffffff" stroke-width="2.5"/>
+<rect x="150" y="784" width="990" height="96" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<rect x="170" y="796" width="74" height="26" rx="13" fill="#ddf4ff"/>
+<text x="207" y="813" font-size="13" font-weight="700" fill="#0969da" text-anchor="middle">Phase V</text>
+<text x="264" y="817" font-size="16" font-weight="700" fill="#1f2328">存量 refresh</text>
+<circle cx="184" cy="842" r="2.5" fill="#0969da"/>
+<text x="196" y="846" font-size="13" fill="#59636e">23 年之前高德认证的门店 refresh</text>
+
+</g>
+</svg>

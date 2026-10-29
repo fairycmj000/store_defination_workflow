@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1760 1120" width="1760" height="1120">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#57606a"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#8250df"/></marker>
+</defs>
+<rect width="1760" height="1120" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<!-- 域分组框 -->
+<rect x="30" y="60" width="300" height="500" rx="16" fill="#f0f6fd" stroke="#0969da" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="180" y="46" font-size="15" fill="#0969da" text-anchor="middle" font-weight="700">总部域（上游源头）</text>
+<rect x="350" y="60" width="320" height="520" rx="16" fill="#fdf3ec" stroke="#bc4c00" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="510" y="46" font-size="15" fill="#bc4c00" text-anchor="middle" font-weight="700">门店基础（店型判断）</text>
+<rect x="710" y="60" width="550" height="780" rx="16" fill="#f2faf3" stroke="#1a7f37" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="985" y="46" font-size="15" fill="#1a7f37" text-anchor="middle" font-weight="700">派生标签（被触发重算）</text>
+<rect x="1270" y="60" width="260" height="860" rx="16" fill="#f7f1fb" stroke="#8250df" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="1400" y="46" font-size="15" fill="#8250df" text-anchor="middle" font-weight="700">外部源</text>
+
+<!-- ============ 连线（平滑圆角曲线，箭头指向目标） ============ -->
+<!-- 全国总部 → 城市总部 -->
+<path d="M175,250 L175,378" fill="none" stroke="#0969da" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="185" y="320" font-size="12" fill="#0969da">KA类型/是否连锁 继承</text>
+
+<!-- 城市总部 → 门店店型 -->
+<path d="M300,480 L368,505" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="308" y="470" font-size="12" fill="#57606a">是否连锁/指定客户类型</text>
+
+<!-- 城市总部 → 门店RTM渠道 -->
+<path d="M300,430 L666,430 Q680,430 680,416 L680,159 Q680,145 694,145 L728,145" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="470" y="420" font-size="12" fill="#57606a">是否连锁/KA类型</text>
+
+<!-- 店型判断条件 → 门店店型 -->
+<path d="M520,350 L520,448" fill="none" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → 门店RTM渠道 -->
+<path d="M670,485 L686,485 Q700,485 700,471 L700,159 Q700,145 714,145 L728,145" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → 覆盖模式 -->
+<path d="M670,500 L696,500 Q710,500 710,486 L710,319 Q710,310 719,310 L728,310" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → 门店分层 -->
+<path d="M670,515 L706,515 Q720,515 720,501 L720,479 Q720,475 724,475 L728,475" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → 单双人模式 -->
+<path d="M670,530 L711,530 Q725,530 725,544 L725,634 Q725,635 726,635 L728,635" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → ttf系数&固定覆盖 -->
+<path d="M670,545 L956,545 Q970,545 970,531 L970,309 Q970,295 984,295 L1008,295" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → 考核标签 -->
+<path d="M670,550 L966,550 Q980,550 980,536 L980,474 Q980,460 994,460 L1008,460" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → 销量标签 -->
+<path d="M670,555 L971,555 Q985,555 985,569 L985,614 Q985,625 996,625 L1008,625" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店店型 → BM外包服务商 -->
+<path d="M670,540 L976,540 Q990,540 990,554 L990,776 Q990,785 999,785 L1008,785" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店RTM渠道 → RTM SIP细分 -->
+<path d="M950,145 L1008,140" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 覆盖模式 → 门店分层 -->
+<path d="M840,360 L840,428" fill="none" stroke="#1a7f37" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 覆盖模式 → ttf系数&固定覆盖 -->
+<path d="M950,300 L1008,295" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 覆盖模式 → 考核标签 -->
+<path d="M950,320 L1008,445" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 覆盖模式 → 销量标签 -->
+<path d="M950,330 L1008,610" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店分层 → ttf系数&固定覆盖 -->
+<path d="M950,475 L1008,310" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 门店分层 → 考核标签 -->
+<path d="M950,485 L1008,470" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 单双人模式 → ttf系数&固定覆盖 -->
+<path d="M950,625 L1008,320" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- BM外包服务商 → 单双人模式 -->
+<path d="M1125,740 L1125,704 Q1125,690 1111,690 L964,690 Q950,690 950,676 L950,635" fill="none" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- 段均产量 → 销量标签 -->
+<path d="M1290,615 L1242,625" fill="none" stroke="#8250df" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-purple)"/>
+
+<!-- 国家行政区县 → 地域信息 -->
+<path d="M1290,745 L1277,745 Q1264,745 1264,732 L1264,302 Q1264,290 1276,290 L1288,290" fill="none" stroke="#8250df" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-purple)"/>
+
+<!-- 门店业务员 → 业务员交通工具类型 -->
+<path d="M1290,875 L1277,875 Q1264,875 1264,862 L1264,462 Q1264,450 1276,450 L1288,450" fill="none" stroke="#8250df" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-purple)"/>
+
+<!-- ============ 节点 ============ -->
+<!-- 全国总部 -->
+<rect x="50" y="100" width="250" height="150" rx="12" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+<text x="175" y="126" font-size="16" font-weight="700" fill="#0969da" text-anchor="middle">全国总部</text>
+<text x="175" y="150" font-size="12" fill="#1f2328" text-anchor="middle">KA类型</text>
+<text x="175" y="168" font-size="12" fill="#1f2328" text-anchor="middle">是否连锁</text>
+<text x="175" y="186" font-size="12" fill="#1f2328" text-anchor="middle">指定客户类型</text>
+<text x="175" y="204" font-size="12" fill="#1f2328" text-anchor="middle">零食客户系列</text>
+<text x="175" y="222" font-size="12" fill="#1f2328" text-anchor="middle">渠道</text>
+
+<!-- 城市总部 -->
+<rect x="50" y="380" width="250" height="150" rx="12" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+<text x="175" y="406" font-size="16" font-weight="700" fill="#0969da" text-anchor="middle">城市总部</text>
+<text x="175" y="430" font-size="12" fill="#1f2328" text-anchor="middle">是否连锁</text>
+<text x="175" y="448" font-size="12" fill="#1f2328" text-anchor="middle">KA类型</text>
+<text x="175" y="466" font-size="12" fill="#1f2328" text-anchor="middle">渠道</text>
+<text x="175" y="484" font-size="12" fill="#1f2328" text-anchor="middle">RTM渠道</text>
+
+<!-- 店型判断条件 -->
+<rect x="370" y="100" width="300" height="250" rx="12" fill="#ffffff" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="520" y="126" font-size="15" font-weight="700" fill="#bc4c00" text-anchor="middle">店型判断条件（基础字段）</text>
+<text x="520" y="152" font-size="12" fill="#1f2328" text-anchor="middle">商圈环境</text>
+<text x="520" y="170" font-size="12" fill="#1f2328" text-anchor="middle">门店营业面积</text>
+<text x="520" y="188" font-size="12" fill="#1f2328" text-anchor="middle">收银机个数</text>
+<text x="520" y="206" font-size="12" fill="#1f2328" text-anchor="middle">是否大宗售卖 · 是否进口</text>
+<text x="520" y="224" font-size="12" fill="#1f2328" text-anchor="middle">营业时间是否&gt;16小时</text>
+<text x="520" y="242" font-size="12" fill="#1f2328" text-anchor="middle">批发渠道类型</text>
+<text x="520" y="260" font-size="12" fill="#1f2328" text-anchor="middle">是否生鲜面积&gt;70%售卖</text>
+<text x="520" y="278" font-size="12" fill="#59636e" text-anchor="middle">城市总部（门店关联）</text>
+
+<!-- 门店店型 -->
+<rect x="370" y="450" width="300" height="110" rx="12" fill="#ffffff" stroke="#bc4c00" stroke-width="2"/>
+<text x="520" y="482" font-size="17" font-weight="700" fill="#bc4c00" text-anchor="middle">门店店型</text>
+<text x="520" y="508" font-size="13" fill="#1f2328" text-anchor="middle">三级渠道店型（80 → 64）</text>
+<text x="520" y="528" font-size="12" fill="#59636e" text-anchor="middle">核心枢纽 · 扇出触发派生标签</text>
+
+<!-- 门店RTM渠道 -->
+<rect x="730" y="100" width="220" height="90" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="840" y="128" font-size="15" font-weight="700" fill="#1a7f37" text-anchor="middle">门店 RTM渠道</text>
+<text x="840" y="150" font-size="12" fill="#1f2328" text-anchor="middle">Seeding/Special 看是否连锁</text>
+<text x="840" y="168" font-size="12" fill="#1f2328" text-anchor="middle">MT/Snacking 看 KA类型</text>
+
+<!-- 覆盖模式 -->
+<rect x="730" y="260" width="220" height="100" rx="10" fill="#ffffff" stroke="#d4a017" stroke-width="1.5"/>
+<text x="840" y="288" font-size="15" font-weight="700" fill="#d4a017" text-anchor="middle">覆盖模式</text>
+<text x="840" y="310" font-size="12" fill="#1f2328" text-anchor="middle">固定/非固定/不可拜访</text>
+<text x="840" y="328" font-size="12" fill="#1f2328" text-anchor="middle">冰淇淋拜访/DA覆盖/线路外</text>
+
+<!-- 门店分层 -->
+<rect x="730" y="430" width="220" height="90" rx="10" fill="#ffffff" stroke="#c2185b" stroke-width="1.5"/>
+<text x="840" y="458" font-size="15" font-weight="700" fill="#c2185b" text-anchor="middle">门店分层</text>
+<text x="840" y="480" font-size="12" fill="#1f2328" text-anchor="middle">store_seg（铜/银/小微/金）</text>
+<text x="840" y="498" font-size="12" fill="#1f2328" text-anchor="middle">store_level（Tier2）</text>
+
+<!-- 单双人模式 -->
+<rect x="730" y="590" width="220" height="90" rx="10" fill="#ffffff" stroke="#d4a017" stroke-width="1.5"/>
+<text x="840" y="618" font-size="15" font-weight="700" fill="#d4a017" text-anchor="middle">单双人模式</text>
+<text x="840" y="640" font-size="12" fill="#1f2328" text-anchor="middle">单人模式 / 双人模式</text>
+
+<!-- RTM SIP细分 -->
+<rect x="1010" y="100" width="230" height="80" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="1125" y="128" font-size="15" font-weight="700" fill="#1a7f37" text-anchor="middle">RTM SIP细分</text>
+<text x="1125" y="150" font-size="12" fill="#1f2328" text-anchor="middle">零食客户系列 · 承包制经销商</text>
+
+<!-- ttf系数&固定覆盖 -->
+<rect x="1010" y="250" width="230" height="90" rx="10" fill="#ffffff" stroke="#d4a017" stroke-width="1.5"/>
+<text x="1125" y="278" font-size="15" font-weight="700" fill="#d4a017" text-anchor="middle">ttf系数 &amp; 固定覆盖</text>
+<text x="1125" y="300" font-size="12" fill="#1f2328" text-anchor="middle">折算TT店数</text>
+<text x="1125" y="318" font-size="12" fill="#1f2328" text-anchor="middle">是否批发专属</text>
+
+<!-- 考核标签 -->
+<rect x="1010" y="410" width="230" height="100" rx="10" fill="#ffffff" stroke="#6f42c1" stroke-width="1.5"/>
+<text x="1125" y="438" font-size="15" font-weight="700" fill="#6f42c1" text-anchor="middle">考核标签</text>
+<text x="1125" y="460" font-size="12" fill="#1f2328" text-anchor="middle">assessment_tag</text>
+<text x="1125" y="480" font-size="12" fill="#1f2328" text-anchor="middle">糖巧线下完美/线上O2O/冰淇淋</text>
+<text x="1125" y="498" font-size="12" fill="#1f2328" text-anchor="middle">IC DSR</text>
+
+<!-- 销量标签 -->
+<rect x="1010" y="580" width="230" height="90" rx="10" fill="#ffffff" stroke="#c2185b" stroke-width="1.5"/>
+<text x="1125" y="608" font-size="15" font-weight="700" fill="#c2185b" text-anchor="middle">销量标签</text>
+<text x="1125" y="630" font-size="12" fill="#1f2328" text-anchor="middle">产量等级 · 销量分层 · 销量分类</text>
+
+<!-- BM外包服务商&人店关系 -->
+<rect x="1010" y="740" width="230" height="90" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="1125" y="768" font-size="15" font-weight="700" fill="#1a7f37" text-anchor="middle">BM外包服务商 &amp; 人店关系</text>
+<text x="1125" y="790" font-size="12" fill="#1f2328" text-anchor="middle">salesman_code/name · store_manager</text>
+
+<!-- 地域信息 -->
+<rect x="1290" y="250" width="230" height="80" rx="10" fill="#ffffff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="1405" y="278" font-size="15" font-weight="700" fill="#0e7490" text-anchor="middle">地域信息</text>
+<text x="1405" y="300" font-size="12" fill="#1f2328" text-anchor="middle">地域分类 · 数字化片区</text>
+
+<!-- 业务员交通工具类型 -->
+<rect x="1290" y="410" width="230" height="80" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="1405" y="438" font-size="15" font-weight="700" fill="#1a7f37" text-anchor="middle">业务员交通工具类型</text>
+<text x="1405" y="460" font-size="12" fill="#1f2328" text-anchor="middle">随门店业务员更新</text>
+
+<!-- 段均产量 -->
+<rect x="1290" y="580" width="230" height="70" rx="10" fill="#ffffff" stroke="#8250df" stroke-width="1.5"/>
+<text x="1405" y="608" font-size="15" font-weight="700" fill="#8250df" text-anchor="middle">段均产量 / 产量等级（销量类）</text>
+<text x="1405" y="630" font-size="12" fill="#59636e" text-anchor="middle">Engine 门店产量等级底表</text>
+
+<!-- 国家行政区县 -->
+<rect x="1290" y="710" width="230" height="70" rx="10" fill="#ffffff" stroke="#8250df" stroke-width="1.5"/>
+<text x="1405" y="738" font-size="15" font-weight="700" fill="#8250df" text-anchor="middle">国家行政区县</text>
+<text x="1405" y="760" font-size="12" fill="#59636e" text-anchor="middle">三级行政区 · MDP 匹配</text>
+
+<!-- 门店业务员 -->
+<rect x="1290" y="840" width="230" height="70" rx="10" fill="#ffffff" stroke="#8250df" stroke-width="1.5"/>
+<text x="1405" y="868" font-size="15" font-weight="700" fill="#8250df" text-anchor="middle">门店业务员</text>
+<text x="1405" y="890" font-size="12" fill="#59636e" text-anchor="middle">salesman · 员工类型</text>
+
+<!-- ============ 图例 ============ -->
+<g font-size="13" fill="#57606a">
+<rect x="40" y="1000" width="18" height="18" rx="4" fill="#f0f6fd" stroke="#0969da"/>
+<text x="64" y="1014">总部域（上游源头）</text>
+<rect x="250" y="1000" width="18" height="18" rx="4" fill="#fdf3ec" stroke="#bc4c00"/>
+<text x="274" y="1014">门店基础（店型判断）</text>
+<rect x="470" y="1000" width="18" height="18" rx="4" fill="#f2faf3" stroke="#1a7f37"/>
+<text x="494" y="1014">派生标签（被触发重算）</text>
+<rect x="690" y="1000" width="18" height="18" rx="4" fill="#f7f1fb" stroke="#8250df"/>
+<text x="714" y="1014">外部源</text>
+<line x1="900" y1="1009" x2="930" y2="1009" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="938" y="1014">实线 = 触发重算</text>
+<line x1="1080" y1="1009" x2="1110" y2="1009" stroke="#8250df" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-purple)"/>
+<text x="1118" y="1014">虚线 = 外部输入</text>
+</g>
+<g font-size="13" fill="#57606a">
+<text x="40" y="1046" font-weight="700">标签分类（对应第三章）:</text>
+<rect x="240" y="1032" width="16" height="16" rx="4" fill="#ffffff" stroke="#d4a017"/>
+<text x="262" y="1046">触达方式类（3.1）</text>
+<rect x="380" y="1032" width="16" height="16" rx="4" fill="#ffffff" stroke="#c2185b"/>
+<text x="402" y="1046">销量类（3.2）</text>
+<rect x="510" y="1032" width="16" height="16" rx="4" fill="#ffffff" stroke="#6f42c1"/>
+<text x="532" y="1046">考核类（3.3）</text>
+<rect x="640" y="1032" width="16" height="16" rx="4" fill="#ffffff" stroke="#0e7490"/>
+<text x="662" y="1046">地域（3.4）</text>
+</g>
+
+</g>
+</svg>

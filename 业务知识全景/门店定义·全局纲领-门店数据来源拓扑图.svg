@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#57606a"/></marker>
+<marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#0969da"/></marker>
+<marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#bc4c00"/></marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+<g font-family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif'>
+
+<!-- ============ 业务建店（COT 应用端） ============ -->
+<rect x="60" y="96" width="540" height="300" rx="16" fill="#f6f8fa" stroke="#0969da" stroke-width="1.5"/>
+<text x="80" y="80" font-size="15" fill="#0969da">业务建店（COT 应用端）</text>
+
+<rect x="100" y="140" width="460" height="100" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="330" y="180" font-size="18" font-weight="700" fill="#1f2328" text-anchor="middle">糖巧业务团队（MW）</text>
+<text x="330" y="208" font-size="13" fill="#59636e" text-anchor="middle">品类：糖 · 巧克力 · 新收购的薯片&amp;谷物</text>
+
+<rect x="100" y="260" width="460" height="100" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="330" y="300" font-size="18" font-weight="700" fill="#1f2328" text-anchor="middle">冰淇淋业务团队（IC）</text>
+<text x="330" y="328" font-size="13" fill="#59636e" text-anchor="middle">品类：冰淇淋</text>
+
+<!-- ============ 外部数据源接入 ============ -->
+<rect x="60" y="436" width="540" height="414" rx="16" fill="#f6f8fa" stroke="#bc4c00" stroke-width="1.5"/>
+<text x="80" y="420" font-size="15" fill="#bc4c00">外部数据源接入</text>
+
+<rect x="100" y="480" width="240" height="100" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="220" y="518" font-size="18" font-weight="700" fill="#1f2328" text-anchor="middle">O2O 门店</text>
+<text x="220" y="546" font-size="12" fill="#59636e" text-anchor="middle">美团 / 饿了么 / 支付宝线上平台</text>
+
+<rect x="100" y="600" width="240" height="100" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="220" y="638" font-size="18" font-weight="700" fill="#1f2328" text-anchor="middle">CVS 门店</text>
+<text x="220" y="666" font-size="13" fill="#59636e" text-anchor="middle">高德 / 百度</text>
+
+<rect x="100" y="720" width="240" height="110" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="220" y="758" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">ERP 门店</text>
+<text x="220" y="784" font-size="12" fill="#59636e" text-anchor="middle">经销商侧 ERP</text>
+
+<rect x="380" y="490" width="220" height="190" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="490" y="545" font-size="16" font-weight="700" fill="#1f2328" text-anchor="middle">糖巧业务团队（MW）</text>
+<text x="490" y="571" font-size="13" fill="#59636e" text-anchor="middle">待拓门店补全</text>
+<text x="490" y="593" font-size="12" fill="#59636e" text-anchor="middle">（按门店定义）</text>
+
+<rect x="380" y="720" width="220" height="110" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+<text x="490" y="758" font-size="17" font-weight="700" fill="#1f2328" text-anchor="middle">DA 团队</text>
+<text x="490" y="782" font-size="12" fill="#59636e" text-anchor="middle">Direct Account · 经销商下属</text>
+<text x="490" y="804" font-size="12" fill="#59636e" text-anchor="middle">DA 应用端补全门店信息</text>
+
+<line x1="340" y1="530" x2="380" y2="545" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+<line x1="340" y1="650" x2="380" y2="625" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+<line x1="340" y1="775" x2="380" y2="775" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+<!-- ============ 门店主数据（目标） ============ -->
+<rect x="940" y="360" width="520" height="200" rx="16" fill="#dafbe1" stroke="#1a7f37" stroke-width="2"/>
+<text x="1200" y="418" font-size="22" font-weight="700" fill="#1a7f37" text-anchor="middle">门店主数据（玛氏标准）</text>
+<text x="1200" y="456" font-size="15" fill="#1f2328" text-anchor="middle">符合门店定义标准的门店</text>
+<text x="1200" y="496" font-size="12" fill="#59636e" text-anchor="middle">渠道店型 + RTM + 标签 + 门店基本信息 + 供货关系 + 人店关系</text>
+
+<!-- ============ 汇聚箭头 ============ -->
+<line x1="560" y1="190" x2="940" y2="400" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="560" y1="310" x2="940" y2="430" stroke="#0969da" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<line x1="600" y1="585" x2="940" y2="470" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+<line x1="600" y1="775" x2="940" y2="530" stroke="#bc4c00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+<!-- ============ 注记 ============ -->
+<text x="60" y="890" font-size="13" fill="#57606a">三个业务团队：糖巧（MW）· 冰淇淋（IC）· DA（Direct Account）——MW / IC 业务建店（COT 应用端）；O2O / CVS 待拓门店由糖巧（MW）按门店定义补全，ERP 门店由 DA 团队用 DA 应用端补全。</text>
+
+</g>
+</svg>
